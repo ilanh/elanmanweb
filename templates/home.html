@@ -1,5 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>eLAN Manager</h3>
-home page
+<div class="row">
+    <div class="col">
+        <div class="alert alert-success">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col-10">
+        <div class="jumbotron">
+            <h1 class="display-3">Welcome</h1>
+            <p class="lead">The main reson for this site is generate the yaml required for eLan Manager</p>
+            <hr class="my-4">
+            <p>I'm just starting with the wizard, you can give it a try here:</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/start/" role="button">Start Wizard</a>
+            </p>
+        </div>
+    </div>
+    <div class="col">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="alert alert-primary">
+            My Projects on github:
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    <div class="card-group">
+        <div class="card">
+            <!--<img class="card-img-top" src="holder.js/100px80" alt="Card image cap">-->
+            <div class="card-body">
+                <h4 class="card-title">elanman</h4>
+                <p class="card-text">Ansible playbook to generate another playbook tailor made to your environment.</p>
+                <p class="card-text">github link to come</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">clonelink</small>
+            </div>
+        </div>
+        <div class="card">
+            <!--<img class="card-img-top" src="holder.js/100px80" alt="Card image cap">-->
+            <div class="card-body">
+                <h4 class="card-title">myelanman</h4>
+                <p class="card-text">The output playbook of elanman if no answer file is given and the sample is
+                    applied.</p>
+                <p class="card-text">github link to come</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">clonelink</small>
+            </div>
+        </div>
+        <div class="card">
+            <!--<img class="card-img-top" src="holder.js/100px80" alt="Card image cap">-->
+            <div class="card-body">
+                <h4 class="card-title">elanmanweb</h4>
+                <p class="card-text">This website that will eventually generate answers.yaml to download after a short
+                    wizard</p>
+                <p class="card-text">github link to come</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">clonelink</small>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 {% endblock content %}

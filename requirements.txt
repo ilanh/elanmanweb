@@ -21,7 +21,6 @@ oauthlib==2.0.6
 pathlib==1.0.1
 pathtools==0.1.2
 port-for==0.3.1
-psycopg2==2.5.4
 python-decouple==3.1
 python3-openid==3.1.0
 pytz==2017.3
