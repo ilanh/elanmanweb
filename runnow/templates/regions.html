@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
+
+{% block content %}
+<p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+<h1>Regions</h1>
+<form action="" method="post">{% csrf_token %}
+<table class="table">
+{{ wizard.management_form }}
+{% if wizard.form.forms %}
+    {{ wizard.form.management_form }}
+    {% for form in wizard.form.forms %}
+        {% if forloop.first %}
+            <thead>
+            <tr>
+                {% for field in form.visible_fields %}
+                    <th>{{ field.label|capfirst }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+        {% endif %}
+        <tr class="{% cycle row1 row2 %} formset_row">
+        {% for field in form.visible_fields %}
+            <td>
+                {% if forloop.first %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                {% endif %}
+                {{ field.errors.as_ul }}
+                {{ field }}
+            </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+{% else %}
+    {{ wizard.form }}
+{% endif %}
+</table>
+{% if wizard.steps.prev %}
+<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+{% endif %}
+<input type="submit" value="{% trans "submit" %}"/>
+</form>
+<script src="{% static 'formset/jquery.formset.js' %}"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'add contact',
+        deleteText: 'remove',
+        prefix: 'regionformset_set'
+    });
+</script>
+{% endblock %}
