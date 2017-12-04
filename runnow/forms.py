@@ -29,10 +29,10 @@ class ServerNodeForm(forms.Form):
     logicalgroup = forms.CharField(max_length=16)
 
 
-RegionFormset = formset_factory(RegionForm, extra=4, max_num=1)
+RegionFormset = formset_factory(RegionForm, extra=4, max_num=4)
 
-RoleFormset = formset_factory(RoleForm, extra=4, max_num=1)
+RoleFormset = formset_factory(RoleForm, extra=4, max_num=4)
 
 BrandFormset = formset_factory(BrandForm, extra=4, max_num=4)
 
-ServerNodeFormset = formset_factory(ServerNodeForm, extra=4, max_num=1)
+ServerNodeFormset = formset_factory(ServerNodeForm, extra=4, max_num=4)
