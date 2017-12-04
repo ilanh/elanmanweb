@@ -14,6 +14,7 @@ TEMPLATES = {"regions": "regions.html",
              "brands": "brands.html",
              "servernodes": "servernodes.html"}
 
+
 class AnswerWizard(SessionWizardView):
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
