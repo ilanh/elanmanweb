@@ -17,9 +17,23 @@ TEMPLATES = {"regions": "regions.html",
 
 class AnswerWizard(SessionWizardView):
     def get_template_names(self):
+        """
+
+        :return: template for current step
+        :rtype: file name
+        """
         return [TEMPLATES[self.steps.current]]
 
     def done(self, form_list, **kwargs):
+        """
+
+        :param form_list: forms to process
+        :type form_list:  list of forms with names
+        :param kwargs:
+        :type kwargs:
+        :return: currently render the data
+        :rtype:
+        """
         return render(self.request, 'done.html', {
             'form_data': [form.cleaned_data for form in form_list],
         })

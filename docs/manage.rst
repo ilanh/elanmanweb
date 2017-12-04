@@ -1,7 +1,7 @@
-views module
-============
+manage module
+=============
 
-.. automodule:: runnow.views
+.. automodule:: manage
     :members:
     :undoc-members:
     :show-inheritance:
