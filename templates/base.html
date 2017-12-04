@@ -17,8 +17,9 @@
     </div>
     <div class="row">
         <div class="col">
-        {% include 'snippets/js.html' %}
+        {% include 'snippets/js-pre.html' %}
         {% block content %}{% endblock content %}
+        {% include 'snippets/js-post.html' %}
         </div>
     <div class="row">
 </div>
