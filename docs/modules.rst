@@ -2,7 +2,7 @@ runnow
 ======
 
 .. toctree::
-:maxdepth: 4
+   :maxdepth: 4
 
-       forms
-       views
+   forms
+   views
