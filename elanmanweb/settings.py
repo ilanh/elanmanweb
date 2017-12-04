@@ -15,7 +15,6 @@ from decouple import config, Csv
 from unipath import Path
 from dj_database_url import parse as db_url
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path(__file__).parent.parent
@@ -30,7 +29,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 
 # Application definition
 
@@ -83,9 +81,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'elanmanweb.wsgi.application'
 
-
 DATABASES = {
-    'default': config('DATABASE_URL', default='sqlite:///' + BASE_DIR.child('db.sqlite3'), cast=db_url )
+    'default': config('DATABASE_URL', default='sqlite:///' + BASE_DIR.child('db.sqlite3'), cast=db_url)
 }
 
 # Password validation
@@ -164,13 +161,13 @@ SOCIALACCOUNT_PROVIDERS = {
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CORS_REPLACE_HTTPS_REFERER      = config('CORS_REPLACE_HTTPS_REFERER', default='None')
-HOST_SCHEME                     = config('HOST_SCHEME', default='"http://"')
-SECURE_SSL_REDIRECT             = config('SECURE_SSL_REDIRECT',default=False, cast=bool)
-SESSION_COOKIE_SECURE           = config('SESSION_COOKIE_SECURE',default=False, cast=bool)
-CSRF_COOKIE_SECURE              = config('CSRF_COOKIE_SECURE',default=False, cast=bool)
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = config('SECURE_HSTS_INCLUDE_SUBDOMAINS',default=False, cast=bool)
-SECURE_HSTS_SECONDS             = config('SECURE_HSTS_SECONDS', default=0, cast=int)
-SECURE_FRAME_DENY               = config('SECURE_FRAME_DENY',default=False, cast=bool)
-CRISPY_TEMPLATE_PACK            = config('CRISPY_TEMPLATE_PACK', default='bootstrap4')
+CORS_REPLACE_HTTPS_REFERER = config('CORS_REPLACE_HTTPS_REFERER', default='None')
+HOST_SCHEME = config('HOST_SCHEME', default='"http://"')
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=0, cast=int)
+SECURE_FRAME_DENY = config('SECURE_FRAME_DENY', default=False, cast=bool)
+CRISPY_TEMPLATE_PACK = config('CRISPY_TEMPLATE_PACK', default='bootstrap4')
 INTERNAL_IPS = '127.0.0.1'

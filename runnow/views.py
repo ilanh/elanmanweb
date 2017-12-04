@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from .forms import *
 from formtools.wizard.views import SessionWizardView
+
 # from django.forms import formset_factory
 
 FORMS = [("regions", RegionFormset),
          ("roles", RoleFormset),
          ("brands", BrandFormset),
          ("servernodes", ServerNodeFormset)]
-
 
 TEMPLATES = {"regions": "regions.html",
              "roles": "roles.html",
