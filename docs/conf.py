@@ -7,6 +7,7 @@
 import os
 import sys
 import django
+import sphinx_rtd_theme
 
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -42,10 +43,14 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
 
 # todo_include_todos = True
-
-html_theme = "bizstyle"
-
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_logo = 'img/logo.png'
+html_theme_options = {
+    'logo_only': True,
+    'display_version': False,
+}
 
 htmlhelp_basename = 'elanmanwebdoc'
 

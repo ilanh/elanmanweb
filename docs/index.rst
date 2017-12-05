@@ -9,6 +9,8 @@ eLanman web site documentation
     :maxdepth: 1
     :caption: Contents:
 
+    intro
+    gettingstarted
     modules
     contributing
 
