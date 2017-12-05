@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'crispy_forms',
     'runnow',
+    'extender',
 ]
 
 MIDDLEWARE = [

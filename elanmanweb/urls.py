@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^start/$', AnswerWizard.as_view(FORMS)),
+    url(r'^dev/', include('extender.urls', namespace='extend')),
 ]
 
 if settings.DEBUG:
