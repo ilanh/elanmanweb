@@ -20,6 +20,14 @@ extender\.apps module
     :undoc-members:
     :show-inheritance:
 
+extender\.forms module
+----------------------
+
+.. automodule:: extender.forms
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 extender\.models module
 -----------------------
 
@@ -32,6 +40,22 @@ extender\.tests module
 ----------------------
 
 .. automodule:: extender.tests
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+extender\.urls module
+---------------------
+
+.. automodule:: extender.urls
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+extender\.utils module
+----------------------
+
+.. automodule:: extender.utils
     :members:
     :undoc-members:
     :show-inheritance:

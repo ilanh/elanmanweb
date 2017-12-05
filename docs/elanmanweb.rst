@@ -4,14 +4,13 @@ elanmanweb package
 Submodules
 ----------
 
-elanmanweb\.docsettings module
-------------------------------
+elanmanweb\.settings module
+---------------------------
 
-.. automodule:: elanmanweb.docsettings
+.. automodule:: elanmanweb.settings
     :members:
     :undoc-members:
     :show-inheritance:
-
 
 Module contents
 ---------------

@@ -6,5 +6,4 @@ elanmanweb
 
    elanmanweb
    extender
-   manage
    runnow
