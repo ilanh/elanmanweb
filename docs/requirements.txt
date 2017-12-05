@@ -1,7 +1,5 @@
-autodoc==0.3
-Django==1.11.7
-django-allauth==0.34.0
-django-formtools==2.1
-docutils==0.14
-Sphinx==1.6.5
-sphinx-autobuild==0.7.1
+Django
+django-formtools
+Sphinx
+sphinx-autobuild
+

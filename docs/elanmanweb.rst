@@ -4,26 +4,10 @@ elanmanweb package
 Submodules
 ----------
 
-elanmanweb\.settings module
----------------------------
+elanmanweb\.docsettings module
+------------------------------
 
-.. automodule:: elanmanweb.settings
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-elanmanweb\.urls module
------------------------
-
-.. automodule:: elanmanweb.urls
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-elanmanweb\.wsgi module
------------------------
-
-.. automodule:: elanmanweb.wsgi
+.. automodule:: elanmanweb.docsettings
     :members:
     :undoc-members:
     :show-inheritance:
