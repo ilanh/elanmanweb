@@ -7,6 +7,7 @@ from .models import RoleObject, LogicalGroupObject
 
 # Create your views here.
 class HomeView(TemplateView):
+    """ Simple Template View"""
     template_name = 'home.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -14,6 +15,7 @@ class HomeView(TemplateView):
         return context
 
 class DevView(TemplateView):
+    """ Simple Template View"""
     template_name = 'dev.html'
 
     def get_context_data(self, *args, **kwargs):

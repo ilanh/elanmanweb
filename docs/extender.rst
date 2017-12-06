@@ -1,78 +1,37 @@
-extender package
-================
+extender application
+====================
 
 Submodules
 ----------
 
-extender\.admin module
-----------------------
-
-.. automodule:: extender.admin
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-extender\.apps module
----------------------
-
-.. automodule:: extender.apps
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-extender\.forms module
-----------------------
+extender\.forms
+---------------
 
 .. automodule:: extender.forms
     :members:
     :undoc-members:
     :show-inheritance:
 
-extender\.models module
------------------------
+extender\.models
+----------------
 
 .. automodule:: extender.models
     :members:
     :undoc-members:
     :show-inheritance:
 
-extender\.tests module
-----------------------
-
-.. automodule:: extender.tests
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-extender\.urls module
----------------------
-
-.. automodule:: extender.urls
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-extender\.utils module
-----------------------
+extender\.utils
+---------------
 
 .. automodule:: extender.utils
     :members:
     :undoc-members:
     :show-inheritance:
 
-extender\.views module
-----------------------
-
-.. automodule:: extender.views
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
+extender\.views
 ---------------
 
-.. automodule:: extender
+.. automodule:: extender.views
     :members:
     :undoc-members:
     :show-inheritance:
