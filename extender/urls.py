@@ -1,3 +1,5 @@
+""" urls under /dev/ space """
+
 from django.conf.urls import url
 from .views import RoleDetailView, RoleCreateView, RoleUpdateView, RoleListView
 

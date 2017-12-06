@@ -6,7 +6,7 @@ eLanman web site documentation
 ======================================
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Contents:
 
     intro
