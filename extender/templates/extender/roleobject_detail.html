@@ -5,11 +5,13 @@
 {% block content %}
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3'>
-<h1>{{ object.title }} <small> <a href='{{ object.get_absolute_url_edit }}'>{{ object.desc }}</a></small></h1>
     <ul class="list-group">
-        <li class="list-group-item">{{ object.shortname }}</li>
-        <li class="list-group-item">{{ object.exid }}</li>
-        <li class="list-group-item">{{ object.slug }}</li>
+        <a href="{{ object.get_absolute_url_edit }}" class="list-group-item list-group-item-action active">
+            {{ object.title }} - (click to edit)
+        </a>
+        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
+        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
     </ul>
 </div>
 {% endblock %}

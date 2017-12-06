@@ -116,9 +116,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-LOGOUT_REDIRECT_URL = '/account/login/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/account/login/'
+LOGIN_URL = '/accounts/login/'
 
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='admin@elanman.org')
 SERVER_EMAIL = config('DEFAULT_FROM_EMAIL', default='admin@elanman.org')
