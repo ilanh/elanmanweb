@@ -21,3 +21,9 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+Credits
+=======
+
+Logo made with Logomakr.com

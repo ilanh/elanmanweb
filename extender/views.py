@@ -11,8 +11,15 @@ class HomeView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        print(context)
         return context
+
+class DevView(TemplateView):
+    template_name = 'dev.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DevView, self).get_context_data(**kwargs)
+        return context
+
 
 
 class RoleListView(LoginRequiredMixin, ListView):
