@@ -2,7 +2,6 @@ from .utils import unique_slug_generator
 import yaml
 from django.conf import settings
 from django.urls import reverse
-# from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import pre_save, post_save
@@ -50,7 +49,7 @@ class RoleObject(models.Model):
 
     @property
     def title(self):
-        return self.shortname
+        return self.exid
 
 
 class LogicalGroupObjectQuerySet(models.QuerySet):
@@ -91,7 +90,7 @@ class LogicalGroupObject(models.Model):
 
     @property
     def title(self):
-        return self.shortname
+        return self.exid
 
 
 class ConfigSectionObjectQuerySet(models.QuerySet):
@@ -134,7 +133,7 @@ class ConfigSectionObject(models.Model):
 
     @property
     def title(self):
-        return self.shortname
+        return self.exid
 
 
 class RoleTaskObjectQuerySet(models.QuerySet):
@@ -176,7 +175,7 @@ class RoleTaskObject(models.Model):
 
     @property
     def title(self):
-        return self.shortname
+        return self.shortname + self.role.__str__()
     
     
 def ro_pre_save_receiver(sender, instance, *args, **kwargs):
