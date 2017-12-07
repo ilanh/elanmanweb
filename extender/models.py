@@ -83,10 +83,10 @@ class LogicalGroupObject(models.Model):
     objects = LogicalGroupObjectManager()
 
     def get_absolute_url(self):
-        return reverse('extend:getlogical', kwargs={'slug': self.slug})
+        return reverse('extend:getlogicalgroup', kwargs={'slug': self.slug})
 
     def get_absolute_url_edit(self):
-        return reverse('extend:editlogical', kwargs={'slug': self.slug})
+        return reverse('extend:editlogicalgroup', kwargs={'slug': self.slug})
 
     @property
     def title(self):
