@@ -11,6 +11,10 @@ from .views import (
     LogicalGroupDetailView,
     LogicalGroupUpdateView,
     LogicalGroupListView,
+    ConfigSectionCreateView,
+    ConfigSectionDetailView,
+    ConfigSectionUpdateView,
+    ConfigSectionListView,
     )
 
 
@@ -24,4 +28,8 @@ urlpatterns = [
     url(r'^logicalgroup/(?P<slug>[\w-]+)/$', LogicalGroupDetailView.as_view(), name='getlogicalgroup'),
     url(r'^logicalgroup/(?P<slug>[\w-]+)/edit/$', LogicalGroupUpdateView.as_view(), name='editlogicalgroup'),
     url(r'^logicalgroup/$', LogicalGroupListView.as_view(), name='listlogicalgroup'),
+    url(r'^configsection/create/$', ConfigSectionCreateView.as_view(), name='createconfigsection'),
+    url(r'^configsection/(?P<slug>[\w-]+)/$', ConfigSectionDetailView.as_view(), name='getconfigsection'),
+    url(r'^configsection/(?P<slug>[\w-]+)/edit/$', ConfigSectionUpdateView.as_view(), name='editconfigsection'),
+    url(r'^configsection/$', ConfigSectionListView.as_view(), name='listconfigsection'),
 ]

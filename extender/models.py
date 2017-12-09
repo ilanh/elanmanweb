@@ -1,10 +1,10 @@
 from .utils import unique_slug_generator
-import yaml
+# import yaml
 from django.conf import settings
 from django.urls import reverse
 from django.db import models
 from django.db.models import Q
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save
 
 User = settings.AUTH_USER_MODEL
 
