@@ -72,6 +72,7 @@ class ApiSectionCreateForm(forms.ModelForm):
         model = ApiSectionObject
         fields = [
             'shortname',
+            'exid',
             'api',
             'desc',
         ]
