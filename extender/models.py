@@ -198,7 +198,6 @@ def rt_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
-
 pre_save.connect(ro_pre_save_receiver, sender=RoleObject)
 pre_save.connect(lgo_pre_save_receiver, sender=LogicalGroupObject)
 pre_save.connect(cs_pre_save_receiver, sender=ConfigSectionObject)

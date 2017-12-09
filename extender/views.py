@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, TemplateView
-from .forms import RoleCreateForm, LogicalGroupCreateForm, ConfigSectionCreateForm
-from .models import RoleObject, LogicalGroupObject, ConfigSectionObject
+from .forms import RoleCreateForm, LogicalGroupCreateForm, ConfigSectionCreateForm, RoleTaskCreateForm
+from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -170,3 +170,51 @@ class ConfigSectionUpdateView(LoginRequiredMixin, UpdateView):
         kwargs['owner'] = self.request.user
         return kwargs
 
+
+class RoleTaskListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return RoleTaskObject.objects.filter(owner=self.request.user)
+
+
+class RoleTaskDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return RoleTaskObject.objects.filter(owner=self.request.user)
+
+
+class RoleTaskCreateView(LoginRequiredMixin, CreateView):
+    form_class = RoleTaskCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(RoleTaskCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RoleTaskCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create RoleTask'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(RoleTaskCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class RoleTaskUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = RoleTaskCreateForm
+    template_name = 'extender/roletaskobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RoleTaskUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return RoleTaskObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(RoleTaskUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs

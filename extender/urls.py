@@ -15,7 +15,11 @@ from .views import (
     ConfigSectionDetailView,
     ConfigSectionUpdateView,
     ConfigSectionListView,
-    )
+    RoleTaskCreateView,
+    RoleTaskDetailView,
+    RoleTaskUpdateView,
+    RoleTaskListView,
+)
 
 
 urlpatterns = [
@@ -32,4 +36,8 @@ urlpatterns = [
     url(r'^configsection/(?P<slug>[\w-]+)/$', ConfigSectionDetailView.as_view(), name='getconfigsection'),
     url(r'^configsection/(?P<slug>[\w-]+)/edit/$', ConfigSectionUpdateView.as_view(), name='editconfigsection'),
     url(r'^configsection/$', ConfigSectionListView.as_view(), name='listconfigsection'),
+    url(r'^roletask/create/$', RoleTaskCreateView.as_view(), name='createroletask'),
+    url(r'^roletask/(?P<slug>[\w-]+)/$', RoleTaskDetailView.as_view(), name='getroletask'),
+    url(r'^roletask/(?P<slug>[\w-]+)/edit/$', RoleTaskUpdateView.as_view(), name='editroletask'),
+    url(r'^roletask/$', RoleTaskListView.as_view(), name='listroletask'),
 ]
