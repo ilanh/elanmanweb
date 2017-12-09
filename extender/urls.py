@@ -2,11 +2,11 @@
 
 from django.conf.urls import url
 from .views import (
+    DevView,
     RoleDetailView,
     RoleCreateView,
     RoleUpdateView,
     RoleListView,
-    DevView,
     LogicalGroupCreateView,
     LogicalGroupDetailView,
     LogicalGroupUpdateView,
@@ -27,6 +27,18 @@ from .views import (
     ApiSectionDetailView,
     ApiSectionUpdateView,
     ApiSectionListView,
+    ConfigSubDetailView,
+    ConfigSubCreateView,
+    ConfigSubUpdateView,
+    ConfigSubListView,
+    ApiSubDetailView,
+    ApiSubCreateView,
+    ApiSubUpdateView,
+    ApiSubListView,
+    RoleTemplateDetailView,
+    RoleTemplateCreateView,
+    RoleTemplateUpdateView,
+    RoleTemplateListView,
 )
 
 
@@ -56,4 +68,16 @@ urlpatterns = [
     url(r'^apisection/(?P<slug>[\w-]+)/$', ApiSectionDetailView.as_view(), name='getapisection'),
     url(r'^apisection/(?P<slug>[\w-]+)/edit/$', ApiSectionUpdateView.as_view(), name='editapisection'),
     url(r'^apisection/$', ApiSectionListView.as_view(), name='listapisection'),
+    url(r'^configsub/create/$', ConfigSubCreateView.as_view(), name='createconfigsub'),
+    url(r'^configsub/(?P<slug>[\w-]+)/$', ConfigSubDetailView.as_view(), name='getconfigsub'),
+    url(r'^configsub/(?P<slug>[\w-]+)/edit/$', ConfigSubUpdateView.as_view(), name='editconfigsub'),
+    url(r'^configsub/$', ConfigSubListView.as_view(), name='listconfigsub'),
+    url(r'^apisub/create/$', ApiSubCreateView.as_view(), name='createapisub'),
+    url(r'^apisub/(?P<slug>[\w-]+)/$', ApiSubDetailView.as_view(), name='getapisub'),
+    url(r'^apisub/(?P<slug>[\w-]+)/edit/$', ApiSubUpdateView.as_view(), name='editapisub'),
+    url(r'^apisub/$', ApiSubListView.as_view(), name='listapisub'),
+    url(r'^roletemplate/create/$', RoleTemplateCreateView.as_view(), name='createroletemplate'),
+    url(r'^roletemplate/(?P<slug>[\w-]+)/$', RoleTemplateDetailView.as_view(), name='getroletemplate'),
+    url(r'^roletemplate/(?P<slug>[\w-]+)/edit/$', RoleTemplateUpdateView.as_view(), name='editroletemplate'),
+    url(r'^roletemplate/$', RoleTemplateListView.as_view(), name='listroletemplate'),
 ]

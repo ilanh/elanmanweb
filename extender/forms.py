@@ -2,7 +2,17 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 # from django.forms.formsets import BaseFormSet
 # from django.forms.models import modelformset_factory
-from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject, ApiObject, ApiSectionObject
+from .models import (
+    RoleObject,
+    LogicalGroupObject,
+    ConfigSectionObject,
+    RoleTaskObject,
+    ApiObject,
+    ApiSectionObject,
+    ApiSubObject,
+    RoleTemplateObject,
+    ConfigSubObject,
+)
 
 
 class RoleCreateForm(forms.ModelForm):
@@ -21,7 +31,7 @@ class RoleCreateForm(forms.ModelForm):
             'exid': _('Key to link yaml vars'),
         }
         error_messages = {
-            'name': {
+            'shortname': {
                 'max_length': _("Name is too long."),
             },
             'exid': {
@@ -49,7 +59,7 @@ class LogicalGroupCreateForm(forms.ModelForm):
             'exid': _('Key to link yaml vars'),
         }
         error_messages = {
-            'name': {
+            'shortname': {
                 'max_length': _("Name is too long."),
             },
             'exid': {
@@ -83,7 +93,7 @@ class ConfigSectionCreateForm(forms.ModelForm):
             'listobject': _('When constructed in yaml, is it a list'),
         }
         error_messages = {
-            'name': {
+            'shortname': {
                 'max_length': _("Name is too long."),
             },
             'exid': {
@@ -114,7 +124,7 @@ class RoleTaskCreateForm(forms.ModelForm):
             'desc': _('Task description'),
         }
         error_messages = {
-            'name': {
+            'shortname': {
                 'max_length': _("Name is too long."),
             },
             'exid': {
@@ -133,6 +143,22 @@ class ApiCreateForm(forms.ModelForm):
             'shortname',
             'desc',
         ]
+        labels = {
+            'shortname': _('Short Name'),
+            'desc': _('Description'),
+        }
+        help_texts = {
+            'shortname': _('API name '),
+            'desc': _('Description for that API'),
+        }
+        error_messages = {
+            'shortname': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(ApiCreateForm, self).__init__(*args, **kwargs)
@@ -147,6 +173,128 @@ class ApiSectionCreateForm(forms.ModelForm):
             'api',
             'desc',
         ]
+        labels = {
+            'shortname': _('Section Name'),
+            'exid': _('External ID'),
+            'desc': _('Description'),
+            'api': _('API'),
+        }
+        help_texts = {
+            'shortname': _('First part of API command'),
+            'exid': _('Key to link yaml vars'),
+            'desc': _('Section description'),
+            'api': _('Parent API'),
+        }
+        error_messages = {
+            'shortname': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(ApiSectionCreateForm, self).__init__(*args, **kwargs)
+
+
+class ApiSubCreateForm(forms.ModelForm):
+    class Meta:
+        model = ApiSubObject
+        fields = [
+            'shortname',
+            'exid',
+            'section',
+            'desc',
+        ]
+        labels = {
+            'shortname': _('Sub object Name'),
+            'exid': _('External ID'),
+            'desc': _('Description'),
+            'section': _('API Section'),
+        }
+        help_texts = {
+            'shortname': _('Second part of API command'),
+            'exid': _('Key to link yaml vars'),
+            'desc': _('Sub Object description'),
+            'section': _('Section for this object'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ApiSubCreateForm, self).__init__(*args, **kwargs)
+
+
+class RoleTemplateCreateForm(forms.ModelForm):
+    class Meta:
+        model = RoleTemplateObject
+        fields = [
+            'shortname',
+            'role',
+            'desc',
+            'istemplate',
+        ]
+        labels = {
+            'shortname': _('Template Name'),
+            'role': _('Role'),
+            'desc': _('Description'),
+            'istemplate': _('Parse'),
+        }
+        help_texts = {
+            'shortname': _('Actual template file name'),
+            'role': _('Assign to role'),
+            'desc': _('Template description'),
+            'istemplate': _('Process Jinja2 or just copy'),
+        }
+        error_messages = {
+            'shortname': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(RoleTemplateCreateForm, self).__init__(*args, **kwargs)
+
+
+class ConfigSubCreateForm(forms.ModelForm):
+    class Meta:
+        model = ConfigSubObject
+        fields = [
+            'shortname',
+            'exid',
+            'section',
+            'desc',
+        ]
+        labels = {
+            'shortname': _('Sub object Name'),
+            'exid': _('External ID'),
+            'desc': _('Description'),
+            'section': _('Config Section'),
+        }
+        help_texts = {
+            'shortname': _('Config Object name'),
+            'exid': _('Key to link yaml vars'),
+            'desc': _('Config Object description'),
+            'section': _('Section for this object'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ConfigSubCreateForm, self).__init__(*args, **kwargs)
