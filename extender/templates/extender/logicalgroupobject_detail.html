@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head_title %}Logical Group | {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+    <ul class="list-group">
+        <a href="{{ object.get_absolute_url_edit }}" class="list-group-item list-group-item-action active">
+            {{ object.title }} - (click to edit)
+        </a>
+        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
+        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+    </ul>
+</div>
+{% endblock %}
