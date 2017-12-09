@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, TemplateView
-from .forms import RoleCreateForm, LogicalGroupCreateForm, ConfigSectionCreateForm, RoleTaskCreateForm
-from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject
+from .forms import RoleCreateForm, LogicalGroupCreateForm, ConfigSectionCreateForm, RoleTaskCreateForm, ApiCreateForm, ApiSectionCreateForm
+from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject, ApiObject, ApiSectionObject
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -216,5 +216,103 @@ class RoleTaskUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(RoleTaskUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+    
+    
+class ApiListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ApiObject.objects.filter(owner=self.request.user)
+
+
+class ApiDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ApiObject.objects.filter(owner=self.request.user)
+
+
+class ApiCreateView(LoginRequiredMixin, CreateView):
+    form_class = ApiCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ApiCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create Api'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ApiCreateForm
+    template_name = 'extender/apiobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return ApiObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+    
+    
+class ApiSectionListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ApiSectionObject.objects.filter(owner=self.request.user)
+
+
+class ApiSectionDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ApiSectionObject.objects.filter(owner=self.request.user)
+
+
+class ApiSectionCreateView(LoginRequiredMixin, CreateView):
+    form_class = ApiSectionCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ApiSectionCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiSectionCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create ApiSection'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiSectionCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiSectionUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ApiSectionCreateForm
+    template_name = 'extender/apisectionobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiSectionUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return ApiSectionObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiSectionUpdateView, self).get_form_kwargs()
         kwargs['owner'] = self.request.user
         return kwargs

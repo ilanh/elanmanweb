@@ -1,7 +1,7 @@
 from django import forms
 # from django.forms.formsets import BaseFormSet
 # from django.forms.models import modelformset_factory
-from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject
+from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject, ApiObject, ApiSectionObject
 
 
 class RoleCreateForm(forms.ModelForm):
@@ -53,3 +53,28 @@ class RoleTaskCreateForm(forms.ModelForm):
 
     def __init__(self, owner=None, *args, **kwargs):
         super(RoleTaskCreateForm, self).__init__(*args, **kwargs)
+
+
+class ApiCreateForm(forms.ModelForm):
+    class Meta:
+        model = ApiObject
+        fields = [
+            'shortname',
+            'desc',
+        ]
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ApiCreateForm, self).__init__(*args, **kwargs)
+
+
+class ApiSectionCreateForm(forms.ModelForm):
+    class Meta:
+        model = ApiSectionObject
+        fields = [
+            'shortname',
+            'api',
+            'desc',
+        ]
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ApiSectionCreateForm, self).__init__(*args, **kwargs)

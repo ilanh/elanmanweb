@@ -19,6 +19,14 @@ from .views import (
     RoleTaskDetailView,
     RoleTaskUpdateView,
     RoleTaskListView,
+    ApiCreateView,
+    ApiDetailView,
+    ApiUpdateView,
+    ApiListView,
+    ApiSectionCreateView,
+    ApiSectionDetailView,
+    ApiSectionUpdateView,
+    ApiSectionListView,
 )
 
 
@@ -40,4 +48,12 @@ urlpatterns = [
     url(r'^roletask/(?P<slug>[\w-]+)/$', RoleTaskDetailView.as_view(), name='getroletask'),
     url(r'^roletask/(?P<slug>[\w-]+)/edit/$', RoleTaskUpdateView.as_view(), name='editroletask'),
     url(r'^roletask/$', RoleTaskListView.as_view(), name='listroletask'),
+    url(r'^api/create/$', ApiCreateView.as_view(), name='createapi'),
+    url(r'^api/(?P<slug>[\w-]+)/$', ApiDetailView.as_view(), name='getapi'),
+    url(r'^api/(?P<slug>[\w-]+)/edit/$', ApiUpdateView.as_view(), name='editapi'),
+    url(r'^api/$', ApiListView.as_view(), name='listapi'),
+    url(r'^apisection/create/$', ApiSectionCreateView.as_view(), name='createapisection'),
+    url(r'^apisection/(?P<slug>[\w-]+)/$', ApiSectionDetailView.as_view(), name='getapisection'),
+    url(r'^apisection/(?P<slug>[\w-]+)/edit/$', ApiSectionUpdateView.as_view(), name='editapisection'),
+    url(r'^apisection/$', ApiSectionListView.as_view(), name='listapisection'),
 ]
