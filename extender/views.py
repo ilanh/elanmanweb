@@ -2,8 +2,28 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, TemplateView
-from .forms import RoleCreateForm, LogicalGroupCreateForm, ConfigSectionCreateForm, RoleTaskCreateForm, ApiCreateForm, ApiSectionCreateForm
-from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject, ApiObject, ApiSectionObject
+from .forms import (
+    RoleCreateForm, 
+    LogicalGroupCreateForm, 
+    ConfigSectionCreateForm, 
+    RoleTaskCreateForm, 
+    ApiCreateForm, 
+    ApiSectionCreateForm,
+    ApiSubCreateForm,
+    ConfigSubCreateForm,
+    RoleTemplateCreateForm,
+)
+from .models import (
+    RoleObject, 
+    LogicalGroupObject, 
+    ConfigSectionObject, 
+    RoleTaskObject, 
+    ApiObject, 
+    ApiSectionObject,
+    ApiSubObject,
+    ConfigSubObject,
+    RoleTemplateObject,
+)
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -71,7 +91,7 @@ class RoleUpdateView(LoginRequiredMixin, UpdateView):
         kwargs = super(RoleUpdateView, self).get_form_kwargs()
         kwargs['owner'] = self.request.user
         return kwargs
-
+    
 
 class LogicalGroupListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
@@ -314,5 +334,152 @@ class ApiSectionUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(ApiSectionUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+    
+
+class ConfigSubListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ConfigSubObject.objects.filter(owner=self.request.user)
+
+
+class ConfigSubDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ConfigSubObject.objects.filter(owner=self.request.user)
+
+
+class ConfigSubCreateView(LoginRequiredMixin, CreateView):
+    form_class = ConfigSubCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ConfigSubCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ConfigSubCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create ConfigSub'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ConfigSubCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ConfigSubUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ConfigSubCreateForm
+    template_name = 'extender/configsubobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ConfigSubUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return ConfigSubObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ConfigSubUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiSubListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ApiSubObject.objects.filter(owner=self.request.user)
+
+
+class ApiSubDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ApiSubObject.objects.filter(owner=self.request.user)
+
+
+class ApiSubCreateView(LoginRequiredMixin, CreateView):
+    form_class = ApiSubCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ApiSubCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiSubCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create ApiSub'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiSubCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiSubUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ApiSubCreateForm
+    template_name = 'extender/apisubobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiSubUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return ApiSubObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiSubUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class RoleTemplateListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return RoleTemplateObject.objects.filter(owner=self.request.user)
+
+
+class RoleTemplateDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return RoleTemplateObject.objects.filter(owner=self.request.user)
+
+
+class RoleTemplateCreateView(LoginRequiredMixin, CreateView):
+    form_class = RoleTemplateCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(RoleTemplateCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RoleTemplateCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create RoleTemplate'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(RoleTemplateCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class RoleTemplateUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = RoleTemplateCreateForm
+    template_name = 'extender/roletemplateobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RoleTemplateUpdateView, self).get_context_data(*args, **kwargs)
+        shortname = self.get_object().shortname
+        context['title'] = f'Update Name: {shortname}'
+        return context
+
+    def get_queryset(self):
+        return RoleTemplateObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(RoleTemplateUpdateView, self).get_form_kwargs()
         kwargs['owner'] = self.request.user
         return kwargs

@@ -91,7 +91,7 @@ class LogicalGroupObject(models.Model):
     @property
     def title(self):
         return self.exid
-
+    
 
 class ConfigSectionObjectQuerySet(models.QuerySet):
     def search(self, query):
@@ -261,12 +261,134 @@ class ApiSectionObject(models.Model):
     def title(self):
         return self.exid
 
-# todo
-# apiobject
-# whmapisections
-# roletemplates
-# configobjects
-# whmapiobjects 
+
+class RoleTemplateObjectQuerySet(models.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(shortname__icontains=query) |
+                Q(shortname__iexact=query)
+            ).distinct()
+        return self
+
+
+class RoleTemplateObjectManager(models.Manager):
+    def get_queryset(self):
+        return RoleTemplateObjectQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
+class RoleTemplateObject(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    shortname = models.CharField(max_length=32)
+    slug = models.SlugField(null=True, blank=True)
+    desc = models.CharField(max_length=64, null=True)
+    istemplate = models.BooleanField(default=False)
+    role = models.ForeignKey(RoleObject, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.shortname
+
+    objects = RoleTemplateObjectManager()
+
+    def get_absolute_url(self):
+        return reverse('extend:getroletemplate', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('extend:editroletemplate', kwargs={'slug': self.slug})
+
+    @property
+    def title(self):
+        return self.shortname + self.role.__str__()
+
+
+class ConfigSubObjectQuerySet(models.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(shortname__icontains=query) |
+                Q(shortname__iexact=query)
+            ).distinct()
+        return self
+
+
+class ConfigSubObjectManager(models.Manager):
+    def get_queryset(self):
+        return ConfigSubObjectQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
+class ConfigSubObject(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    shortname = models.CharField(max_length=32)
+    exid = models.CharField(max_length=8, null=True)
+    desc = models.CharField(max_length=64, null=True)
+    section = models.ForeignKey(ConfigSectionObject, on_delete=models.CASCADE, null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
+
+    def __str__(self):
+        return self.shortname
+
+    objects = ConfigSubObjectManager()
+
+    def get_absolute_url(self):
+        return reverse('extend:getconfigsub', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('extend:editconfigsub', kwargs={'slug': self.slug})
+
+    @property
+    def title(self):
+        return self.exid
+
+
+class ApiSubObjectQuerySet(models.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(shortname__icontains=query) |
+                Q(shortname__iexact=query)
+            ).distinct()
+        return self
+
+
+class ApiSubObjectManager(models.Manager):
+    def get_queryset(self):
+        return ApiSubObjectQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
+class ApiSubObject(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    shortname = models.CharField(max_length=32)
+    exid = models.CharField(max_length=8, null=True)
+    desc = models.CharField(max_length=64, null=True)
+    section = models.ForeignKey(ApiSectionObject, on_delete=models.CASCADE, null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
+
+    def __str__(self):
+        return self.shortname
+
+    objects = ApiSubObjectManager()
+
+    def get_absolute_url(self):
+        return reverse('extend:getapisub', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('extend:editapisub', kwargs={'slug': self.slug})
+
+    @property
+    def title(self):
+        return self.exid
 
 
 def ro_pre_save_receiver(sender, instance, *args, **kwargs):
@@ -299,9 +421,27 @@ def as_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
+def rtm_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+def co_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+def as_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
 pre_save.connect(ro_pre_save_receiver, sender=RoleObject)
 pre_save.connect(lgo_pre_save_receiver, sender=LogicalGroupObject)
 pre_save.connect(cs_pre_save_receiver, sender=ConfigSectionObject)
 pre_save.connect(rt_pre_save_receiver, sender=RoleTaskObject)
 pre_save.connect(ao_pre_save_receiver, sender=ApiObject)
 pre_save.connect(as_pre_save_receiver, sender=ApiSectionObject)
+pre_save.connect(rtm_pre_save_receiver, sender=RoleTemplateObject)
+pre_save.connect(co_pre_save_receiver, sender=ConfigSubObject)
+pre_save.connect(as_pre_save_receiver, sender=ApiSubObject)
