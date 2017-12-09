@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 # from django.forms.formsets import BaseFormSet
 # from django.forms.models import modelformset_factory
 from .models import RoleObject, LogicalGroupObject, ConfigSectionObject, RoleTaskObject, ApiObject, ApiSectionObject
@@ -11,6 +12,22 @@ class RoleCreateForm(forms.ModelForm):
             'shortname',
             'exid',
         ]
+        labels = {
+            'shortname': _('Short Name'),
+            'exid': _('External ID'),
+        }
+        help_texts = {
+            'shortname': _('Directory name for that role'),
+            'exid': _('Key to link yaml vars'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'exid': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(RoleCreateForm, self).__init__(*args, **kwargs)
