@@ -40,6 +40,22 @@ class LogicalGroupCreateForm(forms.ModelForm):
             'shortname',
             'exid',
         ]
+        labels = {
+            'shortname': _('Short Name'),
+            'exid': _('External ID'),
+        }
+        help_texts = {
+            'shortname': _('File name for that Group'),
+            'exid': _('Key to link yaml vars'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'exid': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(LogicalGroupCreateForm, self).__init__(*args, **kwargs)
@@ -54,6 +70,26 @@ class ConfigSectionCreateForm(forms.ModelForm):
             'desc',
             'listobject',
         ]
+        labels = {
+            'shortname': _('Short Name'),
+            'exid': _('External ID'),
+            'desc': _('Description'),
+            'listobject': _('Is this section a list'),
+        }
+        help_texts = {
+            'shortname': _('Section name in yaml file'),
+            'exid': _('Key to link yaml vars'),
+            'desc': _('Description'),
+            'listobject': _('When constructed in yaml, is it a list'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'exid': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(ConfigSectionCreateForm, self).__init__(*args, **kwargs)
@@ -67,6 +103,24 @@ class RoleTaskCreateForm(forms.ModelForm):
             'role',
             'desc',
         ]
+        labels = {
+            'shortname': _('Task Name'),
+            'role': _('Assigned to role'),
+            'desc': _('Description'),
+        }
+        help_texts = {
+            'shortname': _('Task file name, without ext'),
+            'role': _('Choose a role that this task file will be copied to'),
+            'desc': _('Task description'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'exid': {
+                'max_length': _("ID is too long."),
+            },
+        }
 
     def __init__(self, owner=None, *args, **kwargs):
         super(RoleTaskCreateForm, self).__init__(*args, **kwargs)

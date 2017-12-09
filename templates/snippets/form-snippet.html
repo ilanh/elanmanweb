@@ -1,7 +1,8 @@
+{% load crispy_forms_tags %}
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
 {% endif %}
 <form method='POST'> {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type='submit'>Save</button>
 </form>
