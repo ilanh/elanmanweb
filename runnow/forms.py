@@ -19,7 +19,8 @@ class BrandForm(forms.Form):
 class ServerNodeForm(forms.Form):
     fullname = forms.CharField(max_length=32)
     role = forms.ChoiceField(choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.all()])
-    brand = forms.CharField(max_length=16)
+    brand = forms.ChoiceField(choices=['a1','b2'])
+    region = forms.ChoiceField(choices=['a1', 'b2'])
     logicalgroup = forms.ChoiceField(choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.all()])
 
 
