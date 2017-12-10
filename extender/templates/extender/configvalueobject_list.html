@@ -1,21 +1,21 @@
 {% extends "base.html" %}
-{% block head_title %}API | {{ block.super}}{% endblock head_title %}
+{% block head_title %}Config Values | {{ block.super}}{% endblock head_title %}
 {% block content %}
 <div class="table-responsive">
 <table class="table table-hover">
     <thead>
     <tr>
-        <th>API list - <a href='{% url "extend:createapi" %}'>Add</a></th>
+        <th>Config Value list - <a href='{% url "extend:createconfigvalue" %}'>Add</a></th>
     </tr>
     </thead>
     <tbody>
     {% for obj in object_list %}
     <tr>
-        <td>{{ obj.shortname }}</td><td>{{ obj.slug }}</td><td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
+        <td>{{ obj.exid }}</td><td>{{ obj.desc }}</td><td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
     </tr>
     {% empty %}
     <tr>
-    <td><a href='{% url "extend:createapi" %}'>Add One</a></td>
+    <td><a href='{% url "extend:createconfigvalue" %}'>Add One</a></td>
     </tr>
     {% endfor %}
     </tbody>
