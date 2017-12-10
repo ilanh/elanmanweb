@@ -3,19 +3,24 @@ from .forms import *
 from formtools.wizard.views import SessionWizardView
 
 # from django.forms import formset_factory
-
 FORMS = [("regions", RegionFormset),
-         ("brands", BrandFormset),
-         ("servernodes", ServerNodeFormset),
-         ("configlevels", ConfigLevelFormset),
-         ("apilevels", ApiLevelFormset)]
+         ]
 
 TEMPLATES = {"regions": "regions.html",
-             "brands": "brands.html",
-             "servernodes": "servernodes.html",
-             "configlevels": "configlevels.html",
-             "apilevels": "apilevels.html",
              }
+#
+# FORMS = [("regions", RegionFormset),
+#          ("brands", BrandFormset),
+#          ("servernodes", ServerNodeFormset),
+#          ("configlevels", ConfigLevelFormset),
+#          ("apilevels", ApiLevelFormset)]
+#
+# TEMPLATES = {"regions": "regions.html",
+#              "brands": "brands.html",
+#              "servernodes": "servernodes.html",
+#              "configlevels": "configlevels.html",
+#              "apilevels": "apilevels.html",
+#              }
 
 
 class AnswerWizard(SessionWizardView):
