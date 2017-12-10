@@ -525,7 +525,7 @@ class ConfigValueUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ConfigValueUpdateView, self).get_context_data(*args, **kwargs)
-        shortname = self.get_object().shortname
+        exid = self.get_object().exid
         context['title'] = f'Update Name: {exid}'
         return context
 
@@ -574,7 +574,7 @@ class ApiValueUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ApiValueUpdateView, self).get_context_data(*args, **kwargs)
-        shortname = self.get_object().shortname
+        exid = self.get_object().exid
         context['title'] = f'Update Name: {exid}'
         return context
 

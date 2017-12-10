@@ -431,7 +431,7 @@ class ConfigValueObject(models.Model):
 
     @property
     def title(self):
-        return self.exid
+        return self.subobject.__str__() + '-' + self.exid
 
 
 class ApiValueObjectQuerySet(models.QuerySet):
@@ -474,7 +474,7 @@ class ApiValueObject(models.Model):
 
     @property
     def title(self):
-        return self.exid
+        return self.subobject.__str__() + self.exid
 
 
 def ro_pre_save_receiver(sender, instance, *args, **kwargs):

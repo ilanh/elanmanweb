@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block head_title %}API | {{ block.super}}{% endblock head_title %}
+{% block head_title %}Role Templates | {{ block.super}}{% endblock head_title %}
 {% block content %}
 <div class="table-responsive">
 <table class="table table-hover">
     <thead>
     <tr>
-        <th>API list - <a href='{% url "extend:createapi" %}'>Add</a></th>
+        <th>Role template list - <a href='{% url "extend:createroletemplate" %}'>Add</a></th>
     </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
     </tr>
     {% empty %}
     <tr>
-    <td><a href='{% url "extend:createapi" %}'>Add One</a></td>
+    <td><a href='{% url "extend:createroletemplate" %}'>Add One</a></td>
     </tr>
     {% endfor %}
     </tbody>
