@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block head_title %}{{ form.instance.title }} | Config Section | {{ block.super}}{% endblock head_title %}
+{% block head_title %}{{ form.instance.title }} | API Value | {{ block.super}}{% endblock head_title %}
 
 {% block content %}
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3'>
 
-<h1>{{ form.instance.title }} <small> {{ form.instance.shortname }}</small></h1>
+<h1>{{ form.instance.title }} <small> {{ form.instance.desc }}</small></h1>
 <p>{{ form.instance.exid }}</p>
 
 <hr/>

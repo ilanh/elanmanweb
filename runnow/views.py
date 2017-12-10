@@ -5,14 +5,17 @@ from formtools.wizard.views import SessionWizardView
 # from django.forms import formset_factory
 
 FORMS = [("regions", RegionFormset),
-         # ("roles", RoleFormset),
          ("brands", BrandFormset),
-         ("servernodes", ServerNodeFormset)]
+         ("servernodes", ServerNodeFormset),
+         ("configlevels", ConfigLevelFormset),
+         ("apilevels", ApiLevelFormset)]
 
 TEMPLATES = {"regions": "regions.html",
-             # "roles": "roles.html",
              "brands": "brands.html",
-             "servernodes": "servernodes.html"}
+             "servernodes": "servernodes.html",
+             "configlevels": "configlevels.html",
+             "apilevels": "apilevels.html",
+             }
 
 
 class AnswerWizard(SessionWizardView):
@@ -41,3 +44,4 @@ class AnswerWizard(SessionWizardView):
     def get_context_data(self, **kwargs):
         data = super(AnswerWizard, self).get_context_data(**kwargs)
         return data
+

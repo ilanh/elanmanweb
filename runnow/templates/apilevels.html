@@ -8,7 +8,7 @@
 
 {% block content %}
 <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-<h1>Regions</h1>
+<h1>API Levels</h1>
 <form action="" method="post">{% csrf_token %}
     <table class="table table-striped">
         {{ wizard.management_form }}
@@ -32,8 +32,8 @@
                 {{ hidden }}
                 {% endfor %}
                 {% endif %}
-                {{ field.errors.as_ul }}
                 {{ field }}
+                {{ field.errors.as_ul }}
             </td>
             {% endfor %}
         </tr>
@@ -46,6 +46,7 @@
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
     {% endif %}
+    <!--<input type="submit" value="{% trans "submit" %}"/>-->
     {% if wizard.steps.step1 == wizard.steps.count %}
     <input type="submit" value="Submit"/>
     {% else %}
@@ -55,9 +56,9 @@
 <script src="{% static 'formset/jquery.formset.js' %}"></script>
 <script type="text/javascript">
     $('.formset_row').formset({
-        addText: 'add region',
+        addText: 'add brand',
         deleteText: 'remove',
-        prefix: 'RegionFormset'
+        prefix: 'ApiLevelFormset'
     });
 
 

@@ -12,6 +12,8 @@ from .forms import (
     ApiSubCreateForm,
     ConfigSubCreateForm,
     RoleTemplateCreateForm,
+    ConfigValueCreateForm,
+    ApiValueCreateForm,
 )
 from .models import (
     RoleObject, 
@@ -23,6 +25,8 @@ from .models import (
     ApiSubObject,
     ConfigSubObject,
     RoleTemplateObject,
+    ConfigValueObject,
+    ApiValueObject,
 )
 
 # Create your views here.
@@ -483,3 +487,103 @@ class RoleTemplateUpdateView(LoginRequiredMixin, UpdateView):
         kwargs = super(RoleTemplateUpdateView, self).get_form_kwargs()
         kwargs['owner'] = self.request.user
         return kwargs
+
+
+class ConfigValueListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ConfigValueObject.objects.filter(owner=self.request.user)
+
+
+class ConfigValueDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ConfigValueObject.objects.filter(owner=self.request.user)
+
+
+class ConfigValueCreateView(LoginRequiredMixin, CreateView):
+    form_class = ConfigValueCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ConfigValueCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ConfigValueCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create ConfigValue'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ConfigValueCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ConfigValueUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ConfigValueCreateForm
+    template_name = 'extender/configvalueobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ConfigValueUpdateView, self).get_context_data(*args, **kwargs)
+        exid = self.get_object().exid
+        context['title'] = f'Update Name: {exid}'
+        return context
+
+    def get_queryset(self):
+        return ConfigValueObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ConfigValueUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiValueListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return ApiValueObject.objects.filter(owner=self.request.user)
+
+
+class ApiValueDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return ApiValueObject.objects.filter(owner=self.request.user)
+
+
+class ApiValueCreateView(LoginRequiredMixin, CreateView):
+    form_class = ApiValueCreateForm
+    template_name = 'form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(ApiValueCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiValueCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Create ApiValue'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiValueCreateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+
+class ApiValueUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = ApiValueCreateForm
+    template_name = 'extender/apivalueobject_update.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApiValueUpdateView, self).get_context_data(*args, **kwargs)
+        exid = self.get_object().exid
+        context['title'] = f'Update Name: {exid}'
+        return context
+
+    def get_queryset(self):
+        return ApiValueObject.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super(ApiValueUpdateView, self).get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
+

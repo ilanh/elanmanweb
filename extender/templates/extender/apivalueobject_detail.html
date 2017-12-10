@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block head_title %}Config Object | {{ block.super}}{% endblock head_title %}
+{% block head_title %}API Value | {{ block.super}}{% endblock head_title %}
 
 {% block content %}
 <div class='row'>
@@ -9,8 +9,9 @@
         <a href="{{ object.get_absolute_url_edit }}" class="list-group-item list-group-item-action active">
             {{ object.title }} - (click to edit)
         </a>
-        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
+        <li class="list-group-item"><b>Desc:</b> {{ object.desc }}</li>
         <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+        <li class="list-group-item"><b>Value:</b> {{ object.value }}</li>
         <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
     </ul>
 </div>
