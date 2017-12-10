@@ -391,6 +391,92 @@ class ApiSubObject(models.Model):
         return self.exid
 
 
+class ConfigValueObjectQuerySet(models.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(exid__icontains=query) |
+                Q(exid__iexact=query)
+            ).distinct()
+        return self
+
+
+class ConfigValueObjectManager(models.Manager):
+    def get_queryset(self):
+        return ConfigValueObjectQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
+class ConfigValueObject(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    exid = models.CharField(max_length=8, null=True)
+    subobject = models.ForeignKey(ConfigSubObject, on_delete=models.CASCADE, null=True, blank=True)
+    value = models.CharField(max_length=256, null=True)
+    desc = models.CharField(max_length=64, null=True)
+    slug = models.SlugField(null=True, blank=True)
+
+    def __str__(self):
+        return self.exid
+
+    objects = ConfigValueObjectManager()
+
+    def get_absolute_url(self):
+        return reverse('extend:getconfigvalue', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('extend:editconfigvalue', kwargs={'slug': self.slug})
+
+    @property
+    def title(self):
+        return self.exid
+
+
+class ApiValueObjectQuerySet(models.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(exid__icontains=query) |
+                Q(exid__iexact=query)
+            ).distinct()
+        return self
+
+
+class ApiValueObjectManager(models.Manager):
+    def get_queryset(self):
+        return ApiValueObjectQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
+class ApiValueObject(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    exid = models.CharField(max_length=8, null=True)
+    subobject = models.ForeignKey(ApiSubObject, on_delete=models.CASCADE, null=True, blank=True)
+    value = models.CharField(max_length=256, null=True)
+    desc = models.CharField(max_length=64, null=True)
+    slug = models.SlugField(null=True, blank=True)
+
+    def __str__(self):
+        return self.exid
+
+    objects = ApiValueObjectManager()
+
+    def get_absolute_url(self):
+        return reverse('extend:getapivalue', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('extend:editapivalue', kwargs={'slug': self.slug})
+
+    @property
+    def title(self):
+        return self.exid
+
+
 def ro_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
@@ -431,7 +517,17 @@ def co_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
-def as_pre_save_receiver(sender, instance, *args, **kwargs):
+def aps_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+def cv_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+def av_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 
@@ -444,4 +540,6 @@ pre_save.connect(ao_pre_save_receiver, sender=ApiObject)
 pre_save.connect(as_pre_save_receiver, sender=ApiSectionObject)
 pre_save.connect(rtm_pre_save_receiver, sender=RoleTemplateObject)
 pre_save.connect(co_pre_save_receiver, sender=ConfigSubObject)
-pre_save.connect(as_pre_save_receiver, sender=ApiSubObject)
+pre_save.connect(aps_pre_save_receiver, sender=ApiSubObject)
+pre_save.connect(cv_pre_save_receiver, sender=ConfigValueObject)
+pre_save.connect(av_pre_save_receiver, sender=ApiValueObject)

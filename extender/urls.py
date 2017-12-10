@@ -39,6 +39,14 @@ from .views import (
     RoleTemplateCreateView,
     RoleTemplateUpdateView,
     RoleTemplateListView,
+    ConfigValueDetailView,
+    ConfigValueCreateView,
+    ConfigValueUpdateView,
+    ConfigValueListView,
+    ApiValueDetailView,
+    ApiValueCreateView,
+    ApiValueUpdateView,
+    ApiValueListView,
 )
 
 
@@ -80,4 +88,12 @@ urlpatterns = [
     url(r'^roletemplate/(?P<slug>[\w-]+)/$', RoleTemplateDetailView.as_view(), name='getroletemplate'),
     url(r'^roletemplate/(?P<slug>[\w-]+)/edit/$', RoleTemplateUpdateView.as_view(), name='editroletemplate'),
     url(r'^roletemplate/$', RoleTemplateListView.as_view(), name='listroletemplate'),
+    url(r'^configvalue/create/$', ConfigValueCreateView.as_view(), name='createconfigvalue'),
+    url(r'^configvalue/(?P<slug>[\w-]+)/$', ConfigValueDetailView.as_view(), name='getconfigvalue'),
+    url(r'^configvalue/(?P<slug>[\w-]+)/edit/$', ConfigValueUpdateView.as_view(), name='editconfigvalue'),
+    url(r'^configvalue/$', ConfigValueListView.as_view(), name='listconfigvalue'),
+    url(r'^apivalue/create/$', ApiValueCreateView.as_view(), name='createapivalue'),
+    url(r'^apivalue/(?P<slug>[\w-]+)/$', ApiValueDetailView.as_view(), name='getapivalue'),
+    url(r'^apivalue/(?P<slug>[\w-]+)/edit/$', ApiValueUpdateView.as_view(), name='editapivalue'),
+    url(r'^apivalue/$', ApiValueListView.as_view(), name='listapivalue'),
 ]

@@ -12,6 +12,8 @@ from .models import (
     ApiSubObject,
     RoleTemplateObject,
     ConfigSubObject,
+    ConfigValueObject,
+    ApiValueObject,
 )
 
 
@@ -298,3 +300,71 @@ class ConfigSubCreateForm(forms.ModelForm):
 
     def __init__(self, owner=None, *args, **kwargs):
         super(ConfigSubCreateForm, self).__init__(*args, **kwargs)
+
+
+class ConfigValueCreateForm(forms.ModelForm):
+    class Meta:
+        model = ConfigValueObject
+        fields = [
+            'exid',
+            'subobject',
+            'value',
+            'desc',
+        ]
+        labels = {
+            'exid': _('External ID'),
+            'subobject': _('Sub object Name'),
+            'value': _('Object Value'),
+            'desc': _('Description'),
+        }
+        help_texts = {
+            'exid': _('Key to link yaml vars'),
+            'subobject': _('Parent Object'),
+            'value': _('Value of object'),
+            'desc': _('short Description'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ConfigValueCreateForm, self).__init__(*args, **kwargs)
+
+
+class ApiValueCreateForm(forms.ModelForm):
+    class Meta:
+        model = ApiValueObject
+        fields = [
+            'exid',
+            'subobject',
+            'value',
+            'desc',
+        ]
+        labels = {
+            'exid': _('External ID'),
+            'subobject': _('Sub object Name'),
+            'value': _('Object Value'),
+            'desc': _('Description'),
+        }
+        help_texts = {
+            'exid': _('Key to link yaml vars'),
+            'subobject': _('Parent Object'),
+            'value': _('Value of object'),
+            'desc': _('short Description'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("Name is too long."),
+            },
+            'desc': {
+                'max_length': _("ID is too long."),
+            },
+        }
+
+    def __init__(self, owner=None, *args, **kwargs):
+        super(ApiValueCreateForm, self).__init__(*args, **kwargs)

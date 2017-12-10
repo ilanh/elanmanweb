@@ -27,6 +27,10 @@
                href="#list-configsubs" role="tab" aria-controls="configsubs">Config Subs</a>
             <a class="list-group-item list-group-item-action" id="list-roletemplate-list" data-toggle="list"
                href="#list-roletemplates" role="tab" aria-controls="roletemplates">Role Templates</a>
+            <a class="list-group-item list-group-item-action" id="list-configvalue-list" data-toggle="list"
+               href="#list-configvalues" role="tab" aria-controls="configvalues">Config Values</a>
+            <a class="list-group-item list-group-item-action" id="list-apivalue-list" data-toggle="list"
+               href="#list-apivalues" role="tab" aria-controls="apivalues">API Values</a>
         </div>
     </div>
     <div class="col-8">
@@ -75,6 +79,16 @@
                 Explain ...<br>
                 <a href='{% url "extend:listroletemplate" %}' class="badge badge-primary">List</a>
                 <a href='{% url "extend:createroletemplate" %}' class="badge badge-success">Create</a>
+            </div>
+            <div class="tab-pane fade" id="list-configvalues" role="tabpanel" aria-labelledby="list-configvalue-list">
+                Explain ...<br>
+                <a href='{% url "extend:listconfigvalue" %}' class="badge badge-primary">List</a>
+                <a href='{% url "extend:createconfigvalue" %}' class="badge badge-success">Create</a>
+            </div>
+            <div class="tab-pane fade" id="list-apivalues" role="tabpanel" aria-labelledby="list-apivalue-list">
+                Explain ...<br>
+                <a href='{% url "extend:listapivalue" %}' class="badge badge-primary">List</a>
+                <a href='{% url "extend:createapivalue" %}' class="badge badge-success">Create</a>
             </div>
         </div>
     </div>
