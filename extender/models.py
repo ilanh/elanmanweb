@@ -35,6 +35,8 @@ class RoleObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     addon = models.BooleanField(default=False)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -76,6 +78,8 @@ class LogicalGroupObject(models.Model):
     shortname = models.CharField(max_length=32)
     exid = models.CharField(max_length=16, null=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -91,7 +95,7 @@ class LogicalGroupObject(models.Model):
     @property
     def title(self):
         return self.exid
-    
+
 
 class ConfigSectionObjectQuerySet(models.QuerySet):
     def search(self, query):
@@ -119,6 +123,8 @@ class ConfigSectionObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     listobject = models.BooleanField(default=False)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -161,6 +167,10 @@ class RoleTaskObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     role = models.ForeignKey(RoleObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
+    isdev = models.BooleanField(default=True)
+    ispublished = models.BooleanField(default=False)
 
     def __str__(self):
         return self.shortname
@@ -176,7 +186,7 @@ class RoleTaskObject(models.Model):
     @property
     def title(self):
         return self.shortname + '-' + self.role.exid
-    
+
 
 class ApiObjectQuerySet(models.QuerySet):
     def search(self, query):
@@ -202,6 +212,10 @@ class ApiObject(models.Model):
     shortname = models.CharField(max_length=32)
     desc = models.CharField(max_length=64, null=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
+    isdev = models.BooleanField(default=True)
+    ispublished = models.BooleanField(default=False)
 
     def __str__(self):
         return self.shortname
@@ -217,8 +231,8 @@ class ApiObject(models.Model):
     @property
     def title(self):
         return self.shortname
-    
-    
+
+
 class ApiSectionObjectQuerySet(models.QuerySet):
     def search(self, query):
         if query:
@@ -245,6 +259,8 @@ class ApiSectionObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     api = models.ForeignKey(ApiObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -288,6 +304,10 @@ class RoleTemplateObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     istemplate = models.BooleanField(default=False)
     role = models.ForeignKey(RoleObject, on_delete=models.CASCADE, null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
+    isdev = models.BooleanField(default=True)
+    ispublished = models.BooleanField(default=False)
 
     def __str__(self):
         return self.shortname
@@ -331,6 +351,8 @@ class ConfigSubObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     section = models.ForeignKey(ConfigSectionObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -374,6 +396,8 @@ class ApiSubObject(models.Model):
     desc = models.CharField(max_length=64, null=True)
     section = models.ForeignKey(ApiSectionObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.shortname
@@ -417,6 +441,8 @@ class ConfigValueObject(models.Model):
     value = models.CharField(max_length=256, null=True)
     desc = models.CharField(max_length=64, null=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.exid
@@ -460,6 +486,8 @@ class ApiValueObject(models.Model):
     value = models.CharField(max_length=256, null=True)
     desc = models.CharField(max_length=64, null=True)
     slug = models.SlugField(null=True, blank=True)
+    ispublic = models.BooleanField(default=False)
+    popularity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.exid
