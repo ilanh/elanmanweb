@@ -6,5 +6,16 @@
         <li class="list-group-item"><b>Description:</b> {{ object.desc }}</li>
         <li class="list-group-item"><b>Role:</b> {{ object.role }}</li>
         <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+        <li class="list-group-item"><b>Source File on github:</b>
+            {% if object.istemplate %}
+            /ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.yaml.j2
+            <a href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.yaml.j2"
+               target="_blank">Open in new tab</a>
+            {% else %}
+            /ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2
+            <a href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2"
+               target="_blank">Open in new tab</a>
+            {% endif %}
+        </li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}
