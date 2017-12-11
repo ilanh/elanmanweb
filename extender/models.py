@@ -31,7 +31,7 @@ class RoleObjectManager(models.Manager):
 class RoleObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     desc = models.CharField(max_length=64, null=True)
     addon = models.BooleanField(default=False)
     slug = models.SlugField(null=True, blank=True)
@@ -74,7 +74,7 @@ class LogicalGroupObjectManager(models.Manager):
 class LogicalGroupObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
@@ -115,7 +115,7 @@ class ConfigSectionObjectManager(models.Manager):
 class ConfigSectionObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     desc = models.CharField(max_length=64, null=True)
     listobject = models.BooleanField(default=False)
     slug = models.SlugField(null=True, blank=True)
@@ -241,7 +241,7 @@ class ApiSectionObjectManager(models.Manager):
 class ApiSectionObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     desc = models.CharField(max_length=64, null=True)
     api = models.ForeignKey(ApiObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
@@ -327,7 +327,7 @@ class ConfigSubObjectManager(models.Manager):
 class ConfigSubObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     desc = models.CharField(max_length=64, null=True)
     section = models.ForeignKey(ConfigSectionObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
@@ -370,7 +370,7 @@ class ApiSubObjectManager(models.Manager):
 class ApiSubObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     shortname = models.CharField(max_length=32)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     desc = models.CharField(max_length=64, null=True)
     section = models.ForeignKey(ApiSectionObject, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
@@ -412,7 +412,7 @@ class ConfigValueObjectManager(models.Manager):
 
 class ConfigValueObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     subobject = models.ForeignKey(ConfigSubObject, on_delete=models.CASCADE, null=True, blank=True)
     value = models.CharField(max_length=256, null=True)
     desc = models.CharField(max_length=64, null=True)
@@ -455,7 +455,7 @@ class ApiValueObjectManager(models.Manager):
 
 class ApiValueObject(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    exid = models.CharField(max_length=8, null=True)
+    exid = models.CharField(max_length=16, null=True)
     subobject = models.ForeignKey(ApiSubObject, on_delete=models.CASCADE, null=True, blank=True)
     value = models.CharField(max_length=256, null=True)
     desc = models.CharField(max_length=64, null=True)
