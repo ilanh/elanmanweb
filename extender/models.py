@@ -175,7 +175,7 @@ class RoleTaskObject(models.Model):
 
     @property
     def title(self):
-        return self.shortname + self.role.__str__()
+        return self.shortname + '-' + self.role.exid
     
 
 class ApiObjectQuerySet(models.QuerySet):
