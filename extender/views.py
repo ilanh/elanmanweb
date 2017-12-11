@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
+from django import template
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, TemplateView
 from .forms import (
     RoleCreateForm, 
@@ -30,6 +31,10 @@ from .models import (
 )
 
 # Create your views here.
+
+register = template.Library()
+
+
 class HomeView(TemplateView):
     """ Simple Template View"""
     template_name = 'home.html'
@@ -45,6 +50,17 @@ class DevView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(DevView, self).get_context_data(**kwargs)
+        context['rolelist'] = RoleObject.objects.filter(owner=self.request.user)
+        context['logicalgrouplist'] = LogicalGroupObject.objects.filter(owner=self.request.user)
+        context['configsectionlist'] = ConfigSectionObject.objects.filter(owner=self.request.user)
+        context['roletasklist'] = RoleTaskObject.objects.filter(owner=self.request.user)
+        context['roletemplatelist'] = RoleTemplateObject.objects.filter(owner=self.request.user)
+        context['configobjectlist'] = ConfigSubObject.objects.filter(owner=self.request.user)
+        context['configvaluelist'] = ConfigValueObject.objects.filter(owner=self.request.user)
+        context['apilist'] = ApiObject.objects.filter(owner=self.request.user)
+        context['apisectionlist'] = ApiSectionObject.objects.filter(owner=self.request.user)
+        context['apiobjectlist'] = ApiSubObject.objects.filter(owner=self.request.user)
+        context['apivaluelist'] = ApiValueObject.objects.filter(owner=self.request.user)
         return context
 
 

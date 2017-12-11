@@ -10,27 +10,49 @@
     <div class="col-3">
         <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-roles-list" data-toggle="list"
-               href="#list-roles" role="tab" aria-controls="roles">Roles</a>
+                href="#list-roles" role="tab" aria-controls="roles">Roles
+                <span class="badge badge-secondary float-right">{{ rolelist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-logicalgroup-list" data-toggle="list"
-               href="#list-logicalgroup" role="tab" aria-controls="logicalgroup">LogicalGroup</a>
+                href="#list-logicalgroup" role="tab" aria-controls="logicalgroup">LogicalGroup
+                <span class="badge badge-secondary float-right">{{ logicalgrouplist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-roletasks-list" data-toggle="list"
-               href="#list-roletasks" role="tab" aria-controls="roletasks">RoleTasks</a>
+                href="#list-roletasks" role="tab" aria-controls="roletasks">RoleTasks
+                <span class="badge badge-secondary float-right">{{ roletasklist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-roletemplate-list" data-toggle="list"
-               href="#list-roletemplates" role="tab" aria-controls="roletemplates">Role Templates</a>
+                href="#list-roletemplates" role="tab" aria-controls="roletemplates">Role Templates
+                <span class="badge badge-secondary float-right">{{ roletemplatelist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-configsection-list" data-toggle="list"
-            href="#list-configsection" role="tab" aria-controls="configsection">Config Section</a>
+                href="#list-configsection" role="tab" aria-controls="configsection">Config Section
+                <span class="badge badge-secondary float-right">{{ configsectionlist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-configsub-list" data-toggle="list"
-            href="#list-configsubs" role="tab" aria-controls="configsubs">Config Objects</a>
+                href="#list-configsubs" role="tab" aria-controls="configsubs">Config Objects
+                <span class="badge badge-secondary float-right">{{ configobjectlist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-configvalue-list" data-toggle="list"
-            href="#list-configvalues" role="tab" aria-controls="configvalues">Config Values</a>
+                href="#list-configvalues" role="tab" aria-controls="configvalues">Config Values
+                <span class="badge badge-secondary float-right">{{ configvaluelist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-api-list" data-toggle="list"
-            href="#list-api" role="tab" aria-controls="api">Api</a>
+                href="#list-api" role="tab" aria-controls="api">API
+                <span class="badge badge-secondary float-right">{{ apilist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-apisection-list" data-toggle="list"
-            href="#list-apisections" role="tab" aria-controls="apisections">Api Sections</a>
+                href="#list-apisections" role="tab" aria-controls="apisections">API Sections
+                <span class="badge badge-secondary float-right">{{ apisectionlist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-apisub-list" data-toggle="list"
-            href="#list-apisubs" role="tab" aria-controls="apisubs">Api Sub</a>
+                href="#list-apisubs" role="tab" aria-controls="apisubs">API Objects
+                <span class="badge badge-secondary float-right">{{ apiobjectlist|length }}</span>
+            </a>
             <a class="list-group-item list-group-item-action" id="list-apivalue-list" data-toggle="list"
-               href="#list-apivalues" role="tab" aria-controls="apivalues">API Values</a>
+                href="#list-apivalues" role="tab" aria-controls="apivalues">API Values
+                <span class="badge badge-secondary float-right">{{ apivaluelist|length }}</span>
+            </a>
         </div>
     </div>
     <div class="col-9">

@@ -11,7 +11,11 @@
     <tbody>
     {% for obj in object_list %}
     <tr>
-        <td>{{ obj.exid }}</td><td>{{ obj.desc }}</td><td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
+        <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.exid }}</a></td>
+        <td><a href="{{ obj.subobject.get_absolute_url }}" class="navbar-link">{{ obj.subobject }}</a></td>
+        <td>{{ obj.value }}</td>
+        <td>{{ obj.desc }}</td>
+        <td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
     </tr>
     {% empty %}
     <tr>

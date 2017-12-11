@@ -1,17 +1,10 @@
 {% extends "base.html" %}
-
-{% block head_title %}API | {{ block.super}}{% endblock head_title %}
-
+{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
 {% block content %}
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
-    <ul class="list-group">
-        <a href="{{ object.get_absolute_url_edit }}" class="list-group-item list-group-item-action active">
-            {{ object.title }} - (click to edit)
-        </a>
+{% include 'snippets/detail_top.html' %}
         <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
-        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+        <li class="list-group-item"><b>Description:</b> {{ object.desc }}</li>
+        <li class="list-group-item"><b>Role:</b> {{ object.role }}</li>
         <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
-    </ul>
-</div>
+{% include 'snippets/detail_bottom.html' %}
 {% endblock %}
