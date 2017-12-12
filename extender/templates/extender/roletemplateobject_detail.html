@@ -9,12 +9,47 @@
         <li class="list-group-item"><b>Source File on github:</b>
             {% if object.istemplate %}
             /ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.j2
-            <a href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.j2"
-               target="_blank">Open in new tab</a>
+            <ul class="nav nav-tabs float-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">View</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                           href="https://github.com/ilanh/elanman/blob/master/roles/common/templates/{{ object.shortname }}.j2"
+                           target="_blank">View (New Tab)</a>
+                        <a class="dropdown-item"
+                           href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.j2"
+                           target="_blank">View raw (New Tab)</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="https://cdn.rawgit.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.j2"
+                       download target="_blank" class="nav-link">Download
+                    </a>
+                </li>
+            </ul>
             {% else %}
             /ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2
-            <a href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2"
-               target="_blank">Open in new tab</a>
+            <ul class="nav nav-tabs float-right">
+               <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">View</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                           href="https://github.com/ilanh/elanman/blob/master/roles/common/files/{{ object.shortname }}.j2"
+                           target="_blank">View (Mew Tab)</a>
+                        <a class="dropdown-item"
+                           href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2"
+                           target="_blank">View raw (Mew Tab)</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="https://cdn.rawgit.com/ilanh/elanman/master/roles/common/files/{{ object.shortname }}.j2"
+                       download target="_blank" class="nav-link">Download
+                    </a>
+                </li>
+            </ul>
             {% endif %}
         </li>
 {% include 'snippets/detail_bottom.html' %}
