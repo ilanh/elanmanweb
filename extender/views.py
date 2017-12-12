@@ -66,13 +66,16 @@ class DevView(TemplateView):
 
 class RoleListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return RoleObject.objects.filter(owner=self.request.user)
+        combined_queryset = RoleObject.objects.filter(owner=self.request.user) | \
+                            RoleObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class RoleDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return RoleObject.objects.filter(owner=self.request.user)
-
+        combined_queryset = RoleObject.objects.filter(owner=self.request.user) | \
+                            RoleObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 class RoleCreateView(LoginRequiredMixin, CreateView):
     form_class = RoleCreateForm
@@ -115,12 +118,16 @@ class RoleUpdateView(LoginRequiredMixin, UpdateView):
 
 class LogicalGroupListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return LogicalGroupObject.objects.filter(owner=self.request.user)
+        combined_queryset = LogicalGroupObject.objects.filter(owner=self.request.user) | \
+                            LogicalGroupObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class LogicalGroupDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return LogicalGroupObject.objects.filter(owner=self.request.user)
+        combined_queryset = LogicalGroupObject.objects.filter(owner=self.request.user) | \
+                            LogicalGroupObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class LogicalGroupCreateView(LoginRequiredMixin, CreateView):
@@ -164,12 +171,16 @@ class LogicalGroupUpdateView(LoginRequiredMixin, UpdateView):
 
 class ConfigSectionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ConfigSectionObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigSectionObject.objects.filter(owner=self.request.user) | \
+                            ConfigSectionObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigSectionDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ConfigSectionObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigSectionObject.objects.filter(owner=self.request.user) | \
+                            ConfigSectionObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigSectionCreateView(LoginRequiredMixin, CreateView):
@@ -213,12 +224,16 @@ class ConfigSectionUpdateView(LoginRequiredMixin, UpdateView):
 
 class RoleTaskListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return RoleTaskObject.objects.filter(owner=self.request.user)
+        combined_queryset = RoleTaskObject.objects.filter(owner=self.request.user) | \
+                            RoleTaskObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class RoleTaskDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return RoleTaskObject.objects.filter(owner=self.request.user)
+        combined_queryset = RoleTaskObject.objects.filter(owner=self.request.user) | \
+                            RoleTaskObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class RoleTaskCreateView(LoginRequiredMixin, CreateView):
@@ -262,12 +277,16 @@ class RoleTaskUpdateView(LoginRequiredMixin, UpdateView):
     
 class ApiListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ApiObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiObject.objects.filter(owner=self.request.user) | \
+                            ApiObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ApiObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiObject.objects.filter(owner=self.request.user) | \
+                            ApiObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiCreateView(LoginRequiredMixin, CreateView):
@@ -311,12 +330,16 @@ class ApiUpdateView(LoginRequiredMixin, UpdateView):
     
 class ApiSectionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ApiSectionObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiSectionObject.objects.filter(owner=self.request.user) | \
+                            ApiSectionObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiSectionDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ApiSectionObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiSectionObject.objects.filter(owner=self.request.user) | \
+                            ApiSectionObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiSectionCreateView(LoginRequiredMixin, CreateView):
@@ -360,12 +383,16 @@ class ApiSectionUpdateView(LoginRequiredMixin, UpdateView):
 
 class ConfigSubListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ConfigSubObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigSubObject.objects.filter(owner=self.request.user) | \
+                            ConfigSubObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigSubDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ConfigSubObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigSubObject.objects.filter(owner=self.request.user) | \
+                            ConfigSubObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigSubCreateView(LoginRequiredMixin, CreateView):
@@ -409,12 +436,16 @@ class ConfigSubUpdateView(LoginRequiredMixin, UpdateView):
 
 class ApiSubListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ApiSubObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiSubObject.objects.filter(owner=self.request.user) | \
+                            ApiSubObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiSubDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ApiSubObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiSubObject.objects.filter(owner=self.request.user) | \
+                            ApiSubObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiSubCreateView(LoginRequiredMixin, CreateView):
@@ -458,12 +489,16 @@ class ApiSubUpdateView(LoginRequiredMixin, UpdateView):
 
 class RoleTemplateListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return RoleTemplateObject.objects.filter(owner=self.request.user)
+        combined_queryset = RoleTemplateObject.objects.filter(owner=self.request.user) | \
+                            RoleTemplateObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class RoleTemplateDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return RoleTemplateObject.objects.filter(owner=self.request.user)
+        combined_queryset = RoleTemplateObject.objects.filter(owner=self.request.user) | \
+                            RoleTemplateObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class RoleTemplateCreateView(LoginRequiredMixin, CreateView):
@@ -507,12 +542,16 @@ class RoleTemplateUpdateView(LoginRequiredMixin, UpdateView):
 
 class ConfigValueListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ConfigValueObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigValueObject.objects.filter(owner=self.request.user) | \
+                            ConfigValueObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigValueDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ConfigValueObject.objects.filter(owner=self.request.user)
+        combined_queryset = ConfigValueObject.objects.filter(owner=self.request.user) | \
+                            ConfigValueObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ConfigValueCreateView(LoginRequiredMixin, CreateView):
@@ -556,12 +595,16 @@ class ConfigValueUpdateView(LoginRequiredMixin, UpdateView):
 
 class ApiValueListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return ApiValueObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiValueObject.objects.filter(owner=self.request.user) | \
+                            ApiValueObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiValueDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
-        return ApiValueObject.objects.filter(owner=self.request.user)
+        combined_queryset = ApiValueObject.objects.filter(owner=self.request.user) | \
+                            ApiValueObject.objects.filter(ispublic=True)
+        return combined_queryset
 
 
 class ApiValueCreateView(LoginRequiredMixin, CreateView):
