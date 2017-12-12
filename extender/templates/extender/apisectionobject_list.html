@@ -15,7 +15,9 @@
         <td>{{ obj.desc }}</td>
         <td>{{ obj.api }}</td>
         <td>{{ obj.slug }}</td>
+        {% if request.user.username == obj.owner.username %}
         <td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
+        {% endif %}
     </tr>
     {% empty %}
     <tr>

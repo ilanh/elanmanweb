@@ -50,17 +50,28 @@ class DevView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(DevView, self).get_context_data(**kwargs)
-        context['rolelist'] = RoleObject.objects.filter(owner=self.request.user)
-        context['logicalgrouplist'] = LogicalGroupObject.objects.filter(owner=self.request.user)
-        context['configsectionlist'] = ConfigSectionObject.objects.filter(owner=self.request.user)
-        context['roletasklist'] = RoleTaskObject.objects.filter(owner=self.request.user)
-        context['roletemplatelist'] = RoleTemplateObject.objects.filter(owner=self.request.user)
-        context['configobjectlist'] = ConfigSubObject.objects.filter(owner=self.request.user)
-        context['configvaluelist'] = ConfigValueObject.objects.filter(owner=self.request.user)
-        context['apilist'] = ApiObject.objects.filter(owner=self.request.user)
-        context['apisectionlist'] = ApiSectionObject.objects.filter(owner=self.request.user)
-        context['apiobjectlist'] = ApiSubObject.objects.filter(owner=self.request.user)
-        context['apivaluelist'] = ApiValueObject.objects.filter(owner=self.request.user)
+        context['rolelist'] = RoleObject.objects.filter(owner=self.request.user)| \
+                              RoleObject.objects.filter(ispublic=True)
+        context['logicalgrouplist'] = LogicalGroupObject.objects.filter(owner=self.request.user)| \
+                                      LogicalGroupObject.objects.filter(ispublic=True)
+        context['configsectionlist'] = ConfigSectionObject.objects.filter(owner=self.request.user) | \
+                                       ConfigSectionObject.objects.filter(ispublic=True)
+        context['roletasklist'] = RoleTaskObject.objects.filter(owner=self.request.user) | \
+                                  RoleTaskObject.objects.filter(ispublic=True)
+        context['roletemplatelist'] = RoleTemplateObject.objects.filter(owner=self.request.user) | \
+                                      RoleTemplateObject.objects.filter(ispublic=True)
+        context['configobjectlist'] = ConfigSubObject.objects.filter(owner=self.request.user) | \
+                                      ConfigSubObject.objects.filter(ispublic=True)
+        context['configvaluelist'] = ConfigValueObject.objects.filter(owner=self.request.user) | \
+                                     ConfigValueObject.objects.filter(ispublic=True)
+        context['apilist'] = ApiObject.objects.filter(owner=self.request.user) | \
+                             ApiObject.objects.filter(ispublic=True)
+        context['apisectionlist'] = ApiSectionObject.objects.filter(owner=self.request.user) | \
+                                    ApiSectionObject.objects.filter(ispublic=True)
+        context['apiobjectlist'] = ApiSubObject.objects.filter(owner=self.request.user) | \
+                                   ApiSubObject.objects.filter(ispublic=True)
+        context['apivaluelist'] = ApiValueObject.objects.filter(owner=self.request.user) | \
+                                  ApiValueObject.objects.filter(ispublic=True)
         return context
 
 

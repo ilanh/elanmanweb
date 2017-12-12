@@ -13,7 +13,9 @@
     <tr>
         <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.shortname }}</a></td>
         <td>{{ obj.exid }}</td>
-        <td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
+        <td>{% if request.user.username == obj.owner.username %}
+            <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
+        </td>
     </tr>
     {% empty %}
     <tr>
