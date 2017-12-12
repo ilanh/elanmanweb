@@ -2,29 +2,30 @@
 {% block head_title %}Config Values | {{ block.super}}{% endblock head_title %}
 {% block content %}
 <div class="table-responsive">
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Config Value list - <a href='{% url "extend:createconfigvalue" %}'>Add</a></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for obj in object_list %}
-    <tr>
-        <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.exid }}</a></td>
-        <td><a href="{{ obj.subobject.get_absolute_url }}" class="navbar-link">{{ obj.subobject }}</a></td>
-        <td>{{ obj.value }}</td>
-        <td>{{ obj.desc }}</td>
-        <td>{% if request.user.username == obj.owner.username %}
-            <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
-        </td>
-    </tr>
-    {% empty %}
-    <tr>
-    <td><a href='{% url "extend:createconfigvalue" %}'>Add One</a></td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Config Value list - <a class="navbar-link" href='{% url "extend:createconfigvalue" %}'>Add</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in object_list %}
+        <tr>
+            <td class="col col-lg-2"><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.exid }}</a></td>
+            <td class="col col-lg-2"><a href="{{ obj.subobject.get_absolute_url }}" class="navbar-link">{{ obj.subobject }}</a></td>
+            <td>{{ obj.value|truncatechars:16 }}</td>
+            <td class="col-md-auto">{{ obj.desc }}</td>
+            <td class="col col-lg-2">{% if request.user.username == obj.owner.username %}
+                <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>
+                {% else %}public{% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td><a href='{% url "extend:createconfigvalue" %}'>Add One</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
