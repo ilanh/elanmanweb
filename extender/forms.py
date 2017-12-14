@@ -176,18 +176,21 @@ class ApiSectionCreateForm(forms.ModelForm):
             'exid',
             'api',
             'desc',
+            'docurl',
         ]
         labels = {
             'shortname': _('Section Name'),
             'exid': _('External ID'),
             'desc': _('Description'),
             'api': _('API'),
+            'docurl': _('API Documentation link'),
         }
         help_texts = {
             'shortname': _('First part of API command'),
             'exid': _('Key to link yaml vars'),
             'desc': _('Section description'),
             'api': _('Parent API'),
+            'docurl': _('Provide a link to actual API section'),
         }
         error_messages = {
             'shortname': {

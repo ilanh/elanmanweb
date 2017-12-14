@@ -261,6 +261,7 @@ class ApiSectionObject(models.Model):
     slug = models.SlugField(null=True, blank=True)
     ispublic = models.BooleanField(default=False)
     popularity = models.IntegerField(default=0)
+    docurl = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.shortname
