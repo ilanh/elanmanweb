@@ -5,6 +5,6 @@
         <li class="list-group-item"><b>Desc:</b> {{ object.desc }}</li>
         <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
         <li class="list-group-item"><b>Value:</b> {{ object.value }}</li>
-        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+        <li class="list-group-item"><b>Parent:</b> {{ object.subobject.exid }} ({{ object.subobject.desc }})</li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}
