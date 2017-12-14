@@ -210,18 +210,21 @@ class ApiSubCreateForm(forms.ModelForm):
             'exid',
             'section',
             'desc',
+            'trailngspace',
         ]
         labels = {
             'shortname': _('Sub object Name'),
             'exid': _('External ID'),
             'desc': _('Description'),
             'section': _('API Section'),
+            'trailngspace': _('trailing Space'),
         }
         help_texts = {
             'shortname': _('Second part of API command'),
             'exid': _('Key to link yaml vars'),
             'desc': _('Sub Object description'),
             'section': _('Section for this object'),
+            'trailngspace': _('Add space to end of string, if name ends with \"=\" then must be false'),
         }
         error_messages = {
             'name': {

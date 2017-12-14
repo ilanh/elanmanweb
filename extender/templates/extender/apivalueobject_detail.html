@@ -7,6 +7,6 @@
         <li class="list-group-item"><b>Value:</b> {{ object.value }}</li>
         <li class="list-group-item"><b>Parent:</b> {{ object.subobject.exid }} ({{ object.subobject.desc }})</li>
         <li class="list-group-item"><b>command line:</b> whmapi1 {{ object.subobject.section.shortname }}
-            {{ object.subobject.shortname }}{{ object.value }}</li>
+            {{ object.subobject.shortname }}{% if object.subobject.trailngspace %} {% endif %}{{ object.value }}</li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}
