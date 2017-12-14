@@ -82,8 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'elanmanweb.wsgi.application'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 DATABASES = {
     'default': config('DATABASE_URL', default='sqlite:///' + BASE_DIR.child('db.sqlite3'), cast=db_url)
 }
@@ -174,3 +172,4 @@ SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=0, cast=int)
 SECURE_FRAME_DENY = config('SECURE_FRAME_DENY', default=False, cast=bool)
 CRISPY_TEMPLATE_PACK = config('CRISPY_TEMPLATE_PACK', default='bootstrap4')
 INTERNAL_IPS = '127.0.0.1'
+GITHUB_WEBHOOK_KEY = config('GITHUB_WEBHOOK_KEY', default='7N4BCAa4WbUWRVkp4V6h6fYmifInWRCNysNZlm7vXo1138Pore')
