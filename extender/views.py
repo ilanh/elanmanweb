@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 import hmac
+import subprocess
 from hashlib import sha1
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
@@ -116,7 +117,7 @@ def hello(request):
     if event == 'ping':
         return HttpResponse('pong')
     elif event == 'push':
-        # Deploy some code for example
+        subprocess.call("post-receive", shell=True)
         return HttpResponse('success')
 
     # In case we receive an event that's not ping or push
