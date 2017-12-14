@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 import hmac
-# import subprocess
-import os
+import subprocess
+# import os
 from hashlib import sha1
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseServerError
@@ -11,7 +11,7 @@ from django.utils.encoding import force_bytes
 import requests
 from ipaddress import ip_address, ip_network
 from django import template
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from .forms import (
     RoleCreateForm, 
     LogicalGroupCreateForm, 
@@ -118,9 +118,8 @@ def hello(request):
     if event == 'ping':
         return HttpResponse('pong')
     elif event == 'push':
-        # subprocess.call("post-receive", start_new_session=True)
-        os.system('post-receive')
-        return HttpResponse('success')
+        r = subprocess.call('$HOME/bin/post-receive', shell=True)
+        return HttpResponse('success' + ' is' + r)
 
     # In case we receive an event that's not ping or push
     return HttpResponse(status=204)
