@@ -2,15 +2,15 @@
 {% block head_title %}{{ form.instance.title }} | Config Value | {{ block.super}}{% endblock head_title %}
 {% block content %}
 <div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
-<h1>{{ form.instance.title }}
-    <small> {{ form.instance.desc }}</small>
-</h1>
-<p>{{ form.instance.exid }}</p>
-
-<hr/>
-<h3>Make Changes</h3>
-{% include 'snippets/form-snippet.html' with form=form %}
-</div>
+    <div class='col-sm-6 col-sm-offset-3'>
+        <h1>{{ form.instance.title }} {% if form.instance.title != form.instance.exid %}
+            <small> {{ form.instance.exid }}</small>
+            {% endif %}
+        </h1>
+        <p>{{ form.instance.desc }}</p>
+        <hr/>
+        <h3>Make Changes</h3>
+        {% include 'snippets/form-snippet.html' with form=form %}
+    </div>
 </div>
 {% endblock %}

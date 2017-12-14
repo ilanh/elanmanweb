@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import *
+from .forms import RegionFormset, BrandFormset, ServerNodeFormset, ConfigLevelFormset, ApiLevelFormset
 from formtools.wizard.views import SessionWizardView
 
 # from django.forms import formset_factory

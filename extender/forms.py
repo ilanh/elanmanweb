@@ -22,10 +22,12 @@ class RoleCreateForm(forms.ModelForm):
         model = RoleObject
         fields = [
             'shortname',
+            'desc',
             'exid',
         ]
         labels = {
             'shortname': _('Short Name'),
+            'desc': _('description'),
             'exid': _('External ID'),
         }
         help_texts = {

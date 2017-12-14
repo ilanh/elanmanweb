@@ -1,17 +1,31 @@
 {% extends "base.html" %}
-
-{% block head_title %}Role Task | {{ block.super}}{% endblock head_title %}
-
+{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
 {% block content %}
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
-    <ul class="list-group">
-        <a href="{{ object.get_absolute_url_edit }}" class="list-group-item list-group-item-action active">
-            {{ object.title }} - (click to edit)
-        </a>
-        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
-        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+{% include 'snippets/detail_top.html' %}
+        <li class="list-group-item"><b>File Name:</b> {{ object.shortname }}</li>
+        <li class="list-group-item"><b>Role :</b> {{ object.role }}</li>
         <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
-    </ul>
-</div>
+        <li class="list-group-item"><b>Stable version on github:</b>
+            /ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.yaml.j2
+            <ul class="nav nav-tabs float-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">View</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                           href="https://github.com/ilanh/elanman/blob/master/roles/common/templates/{{ object.shortname }}.yaml.j2"
+                           target="_blank">View (New Tab)</a>
+                        <a class="dropdown-item"
+                           href="https://raw.githubusercontent.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.yaml.j2"
+                           target="_blank">View raw (New Tab)</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="https://cdn.rawgit.com/ilanh/elanman/master/roles/common/templates/{{ object.shortname }}.yaml.j2"
+                       download target="_blank" class="nav-link">Download
+                    </a>
+                </li>
+            </ul>
+        </li>
+{% include 'snippets/detail_bottom.html' %}
 {% endblock %}

@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^start/$', AnswerWizard.as_view(FORMS)),
     url(r'^dev/', include('extender.urls', namespace='extend')),
+    url(r'^start/$', AnswerWizard.as_view(FORMS)),
 ]
 
 if settings.DEBUG:
