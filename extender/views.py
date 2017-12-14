@@ -118,7 +118,7 @@ def hello(request):
     if event == 'ping':
         return HttpResponse('pong')
     elif event == 'push':
-        r = subprocess.call('$HOME/bin/post-receive', shell=True)
+        subprocess.call('$HOME/bin/post-receive', shell=True)
         return HttpResponse('success')
 
     # In case we receive an event that's not ping or push
