@@ -400,7 +400,7 @@ class ApiSubObject(models.Model):
     popularity = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.shortname
+        return self.exid
 
     objects = ApiSubObjectManager()
 
