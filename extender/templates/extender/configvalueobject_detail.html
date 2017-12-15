@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
+{% block content %}
+{% include 'snippets/detail_top.html' %}
+            <li class="list-group-item"><b>Desc:</b> {{ object.desc }}</li>
+            <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+            <li class="list-group-item"><b>Value:</b> {{ object.value }}</li>
+            <li class="list-group-item"><b>Parent: </b>
+                <a href="{{ object.subobject.get_absolute_url }}">{{ object.subobject.exid }}</a>
+                ({{ object.subobject.desc }})
+            </li>
+{% include 'snippets/detail_bottom.html' %}
+{% endblock %}
+

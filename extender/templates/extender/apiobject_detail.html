@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
+{% block content %}
+{% include 'snippets/detail_top.html' %}
+        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
+        <li class="list-group-item"><b>Description:</b> {{ object.desc }}</li>
+{% include 'snippets/detail_bottom.html' %}
+{% endblock %}

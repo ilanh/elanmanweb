@@ -1,38 +1,21 @@
-runnow package
-==============
+runnow application
+==================
 
 Submodules
 ----------
 
-runnow\.apps module
--------------------
-
-.. automodule:: runnow.apps
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-runnow\.forms module
---------------------
+runnow\.forms
+-------------
 
 .. automodule:: runnow.forms
     :members:
     :undoc-members:
     :show-inheritance:
 
-runnow\.views module
---------------------
+runnow\.views
+-------------
 
 .. automodule:: runnow.views
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: runnow
     :members:
     :undoc-members:
     :show-inheritance:

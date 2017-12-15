@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
     'crispy_forms',
-    'runnow',
     'extender',
+    'runnow',
 ]
 
 MIDDLEWARE = [
@@ -172,3 +172,4 @@ SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=0, cast=int)
 SECURE_FRAME_DENY = config('SECURE_FRAME_DENY', default=False, cast=bool)
 CRISPY_TEMPLATE_PACK = config('CRISPY_TEMPLATE_PACK', default='bootstrap4')
 INTERNAL_IPS = '127.0.0.1'
+GITHUB_WEBHOOK_KEY = config('GITHUB_WEBHOOK_KEY', default='7N4BCAa4WbUWRVkp4V6h6fYmifInWRCNysNZlm7vXo1138Pore')

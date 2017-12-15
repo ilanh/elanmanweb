@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block head_title %}API | {{ block.super}}{% endblock head_title %}
+{% block content %}
+<div class="table-responsive">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>API list - <a href='{% url "extend:createapi" %}'>Add</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for obj in object_list %}
+    <tr>
+        <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.shortname }}</a></td>
+        <td>{{ obj.desc }}</td>
+        <td>{{ obj.slug }}</td>
+        <td>{% if request.user.username == obj.owner.username %}
+            <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+    <td><a href='{% url "extend:createapi" %}'>Add One</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

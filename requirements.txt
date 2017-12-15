@@ -18,6 +18,7 @@ docutils==0.14
 gunicorn==19.7.1
 idna==2.6
 imagesize==0.7.1
+ipaddress==1.0.18
 Jinja2==2.10
 livereload==2.5.1
 MarkupSafe==1.0

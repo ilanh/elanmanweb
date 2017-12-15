@@ -10,8 +10,13 @@
     </thead>
     <tbody>
     {% for obj in object_list %}
-    <tr>
-        <td>{{ obj.shortname }}</td><td>{{ obj.slug }}</td><td><a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a></td>
+    <tr{% if obj.addon %} class="table-dark"{% endif %}>
+        <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.shortname }}</a></td>
+        <td>{{ obj.desc }}</td>
+        <td>{{ obj.exid }}</td>
+        <td>{% if request.user.username == obj.owner.username %}
+            <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
+        </td>
     </tr>
     {% empty %}
     <tr>
