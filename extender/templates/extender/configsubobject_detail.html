@@ -4,6 +4,9 @@
 {% include 'snippets/detail_top.html' %}
         <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
         <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
-        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+        <li class="list-group-item">
+                <b>Section: </b><a href="{{ object.section.get_absolute_url }}">
+                {{ object.section.exid }}</a> ({{ object.section.desc }})
+        </li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}

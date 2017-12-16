@@ -1,10 +1,31 @@
 {% extends "base.html" %}
-{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
+{% block head_title %}{{ object.desc }} | {{ block.super}}{% endblock head_title %}
+{% load static %}
 {% block content %}
 {% include 'snippets/detail_top.html' %}
-        <li class="list-group-item"><b>Desc:</b> {{ object.desc }}</li>
-        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
-        <li class="list-group-item"><b>Value:</b> {{ object.value }}</li>
-        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+        <li class="list-group-item"><b>Desc: </b>{{ object.desc }}</li>
+        <li class="list-group-item"><b>External ID: </b>{{ object.exid }}</li>
+        <li class="list-group-item"><b>Value: </b>{{ object.value }}</li>
+        <li class="list-group-item"><b>Parent: </b>
+            <a href="{{ object.subobject.get_absolute_url }}">{{ object.subobject.exid }}</a> ({{ object.subobject.desc }})</li>
+        <li class="list-group-item">
+            <b>Actual command line:</b>
+            <small class="text-muted">
+                <div class="input-group input-group-md">
+                    <input type="text" id="apicommand" value="whmapi1 {{ object.subobject.section.shortname }} {{ object.subobject.shortname }}{% if object.subobject.trailngspace %} {% endif %}{{ object.value }}"
+                           class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" data-clipboard-target="#apicommand"
+                                id="copycmd">copy</button>
+                        </span>
+                </div>
+            </small>
+        </li>
 {% include 'snippets/detail_bottom.html' %}
+<script src="{% static 'home/clipboard.min.js' %}"></script>
+<script>
+    (function(){
+    new Clipboard('#copycmd');
+})();
+</script>
 {% endblock %}

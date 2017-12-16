@@ -2,8 +2,8 @@
 {% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
 {% block content %}
 {% include 'snippets/detail_top.html' %}
-        <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
-        <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
-        <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+        <li class="list-group-item"><b>Short Name: </b>{{ object.shortname }}</li>
+        <li class="list-group-item"><b>External ID: </b>{{ object.exid }}</li>
+        <li class="list-group-item"><b>Document URL: </b>{% if object.docurl %}<a href="{{ object.docurl }}" target="_blank">Open (New Tab)</a>{% else %}None{% endif %} </li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}
