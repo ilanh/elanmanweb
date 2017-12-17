@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^dev/', include('extender.urls')),
     url(r'^start/$', AnswerWizard.as_view(FORMS)),
     url(r'^api/hello/$', hello, name='hello'),
+    url(r'^contrib/', include('enhancer.urls')),
 ]
 
 if settings.DEBUG:
