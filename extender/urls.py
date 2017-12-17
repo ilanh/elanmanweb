@@ -1,54 +1,9 @@
 """ urls under /dev/ space """
 
 from django.conf.urls import url
-from .views import (
-    DevView,
-    RoleDetailView,
-    RoleCreateView,
-    RoleUpdateView,
-    RoleListView,
-    LogicalGroupCreateView,
-    LogicalGroupDetailView,
-    LogicalGroupUpdateView,
-    LogicalGroupListView,
-    ConfigSectionCreateView,
-    ConfigSectionDetailView,
-    ConfigSectionUpdateView,
-    ConfigSectionListView,
-    RoleTaskCreateView,
-    RoleTaskDetailView,
-    RoleTaskUpdateView,
-    RoleTaskListView,
-    ApiCreateView,
-    ApiDetailView,
-    ApiUpdateView,
-    ApiListView,
-    ApiSectionCreateView,
-    ApiSectionDetailView,
-    ApiSectionUpdateView,
-    ApiSectionListView,
-    ConfigSubDetailView,
-    ConfigSubCreateView,
-    ConfigSubUpdateView,
-    ConfigSubListView,
-    ApiSubDetailView,
-    ApiSubCreateView,
-    ApiSubUpdateView,
-    ApiSubListView,
-    RoleTemplateDetailView,
-    RoleTemplateCreateView,
-    RoleTemplateUpdateView,
-    RoleTemplateListView,
-    ConfigValueDetailView,
-    ConfigValueCreateView,
-    ConfigValueUpdateView,
-    ConfigValueListView,
-    ApiValueDetailView,
-    ApiValueCreateView,
-    ApiValueUpdateView,
-    ApiValueListView,
-)
+from .views import *
 
+app_name = 'extend'
 
 urlpatterns = [
     url(r'^$', DevView.as_view(), name='index'),

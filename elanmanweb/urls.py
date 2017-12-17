@@ -4,12 +4,11 @@ from django.contrib import admin
 from extender.views import HomeView, hello
 from runnow.views import AnswerWizard, FORMS
 
-
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^dev/', include('extender.urls', namespace='extend')),
+    url(r'^dev/', include('extender.urls')),
     url(r'^start/$', AnswerWizard.as_view(FORMS)),
     url(r'^api/hello/$', hello, name='hello'),
 ]
