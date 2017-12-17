@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import PublicContrib
 from .forms import PublicContribCreateForm
@@ -9,15 +9,21 @@ from django.urls import reverse_lazy
 
 class PublicContribListView(ListView):
     def get_queryset(self):
-        combined_queryset = PublicContrib.objects.filter(owner=self.request.user) | \
-                            PublicContrib.objects.filter(ispublic=True)
+        if self.request.user is not None:
+            combined_queryset = PublicContrib.objects.filter(owner=self.request.user) | \
+            PublicContrib.objects.filter(ispublic=True)
+        else:
+            combined_queryset = PublicContrib.objects.filter(ispublic=True)
         return combined_queryset
 
 
 class PublicContribDetailView(DetailView):
     def get_queryset(self):
-        combined_queryset = PublicContrib.objects.filter(owner=self.request.user) | \
-                            PublicContrib.objects.filter(ispublic=True)
+        if self.request.user is not None:
+            combined_queryset = PublicContrib.objects.filter(owner=self.request.user) | \
+                                PublicContrib.objects.filter(ispublic=True)
+        else:
+            combined_queryset = PublicContrib.objects.filter(ispublic=True)
         return combined_queryset
 
 

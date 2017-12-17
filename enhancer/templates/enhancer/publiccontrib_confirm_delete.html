@@ -5,9 +5,9 @@
 <li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
 <li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
 <li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm"/>
-</form>
+<li class="list-group-item"><form action="" method="post">{% csrf_token %}<b>Are you sure you want to delete "{{ object }}"?</b>
+    <input type="submit" value="Confirm" class="btn btn-danger float-right"/>
+    <a class="btn btn-success float-right" href="{{ object.get_absolute_url }}" role="button">Cencel</a>
+</form></li>
 {% include 'snippets/detail_bottom.html' %}
 {% endblock %}
