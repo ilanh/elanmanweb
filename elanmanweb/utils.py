@@ -22,7 +22,7 @@ def unique_slug_generator(instance, new_slug=None):
     if slug in DONT_USE:
         new_slug = "{slug}-{randstr}".format(
                     slug=slug,
-                    randstr=random_string_generator(size=4)
+                    randstr=random_string_generator(size=3)
                 )
         return unique_slug_generator(instance, new_slug=new_slug)
     Klass = instance.__class__
@@ -30,7 +30,7 @@ def unique_slug_generator(instance, new_slug=None):
     if qs_exists:
         new_slug = "{slug}-{randstr}".format(
                     slug=slug,
-                    randstr=random_string_generator(size=4)
+                    randstr=random_string_generator(size=3)
                 )
         return unique_slug_generator(instance, new_slug=new_slug)
     return slug

@@ -1,4 +1,4 @@
-from .utils import unique_slug_generator
+from elanmanweb.utils import unique_slug_generator
 # import yaml
 from django.conf import settings
 from django.urls import reverse
