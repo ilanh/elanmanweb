@@ -41,6 +41,12 @@ class PublicContrib(models.Model):
 
     objects = PublicContribManager()
 
+    def get_absolute_url(self):
+        return reverse('enhancer:get', kwargs={'slug': self.slug})
+
+    def get_absolute_url_edit(self):
+        return reverse('enhancer:edit', kwargs={'slug': self.slug})
+
     def __str__(self):
         return self.shortname
 
@@ -55,4 +61,3 @@ def pc_pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pc_pre_save_receiver, sender=PublicContrib)
-

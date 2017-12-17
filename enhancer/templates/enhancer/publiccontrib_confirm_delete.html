@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.title }} | {{ block.super}}{% endblock head_title %}
+{% block content %}
+{% include 'snippets/detail_top.html' %}
+<li class="list-group-item"><b>Short Name:</b> {{ object.shortname }}</li>
+<li class="list-group-item"><b>External ID:</b> {{ object.exid }}</li>
+<li class="list-group-item"><b>Slug:</b> {{ object.slug }}</li>
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm"/>
+</form>
+{% include 'snippets/detail_bottom.html' %}
+{% endblock %}

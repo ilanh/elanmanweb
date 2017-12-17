@@ -5,22 +5,22 @@
 <table class="table table-hover">
     <thead>
     <tr>
-        <th>API list - <a href='{% url "extend:createapi" %}'>Add</a></th>
+        <th>Object list - <a href='{% url "enhancer:create" %}'>Add</a></th>
     </tr>
     </thead>
     <tbody>
-    {% for obj in object_list %}
+    {% for object in object_list %}
     <tr>
-        <td><a href="{{ obj.get_absolute_url }}" class="navbar-link">{{ obj.shortname }}</a></td>
-        <td>{{ obj.desc }}</td>
-        <td>{{ obj.slug }}</td>
-        <td>{% if request.user.username == obj.owner.username %}
-            <a href="{{ obj.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
+        <td><a href="{{ object.get_absolute_url }}" class="navbar-link">{{ object.shortname }}</a></td>
+        <td>{{ object.desc }}</td>
+        <td>{{ object.slug }}</td>
+        <td>{% if request.user.username == object.owner.username %}
+            <a href="{{ object.get_absolute_url_edit }}" class="navbar-link">edit</a>{% endif %}
         </td>
     </tr>
     {% empty %}
     <tr>
-    <td><a href='{% url "extend:createapi" %}'>Add One</a></td>
+    <td><a href='{% url "enhancer:create" %}'>Add One</a></td>
     </tr>
     {% endfor %}
     </tbody>
