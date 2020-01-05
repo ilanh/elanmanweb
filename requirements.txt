@@ -44,7 +44,7 @@ sqlparse==0.2.4
 tornado==4.5.2
 Unipath==1.1
 urllib3==1.22
-waitress==1.1.0
+waitress==1.4.1
 watchdog==0.8.3
 WebOb==1.7.4
 WebTest==2.0.29
