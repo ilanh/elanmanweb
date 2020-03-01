@@ -138,9 +138,9 @@ USE_L10N = True
 USE_TZ = True
 SITE_ID = config('SITE_ID', cast=int)
 
-STATIC_ROOT = config('STATIC_ROOT')
+STATIC_ROOT = config('STATIC_ROOT', default=os.path.join(BASE_DIR, 'static'))
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/assets')]
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

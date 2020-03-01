@@ -49,6 +49,7 @@ from .views import (
     ApiValueListView,
 )
 
+app_name = 'extender'
 
 urlpatterns = [
     url(r'^$', DevView.as_view(), name='index'),

@@ -21,6 +21,7 @@ class BrandForm(forms.Form):
 class ServerNodeForm(forms.Form):
     fullname = forms.CharField(max_length=32)
     role = forms.ChoiceField(choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(addon=False, ispublic=True)])
+    #role = forms.ChoiceField(choices=['a1','b2'])
     brand = forms.ChoiceField(choices=['a1','b2'])
     region = forms.ChoiceField(choices=['a1', 'b2'])
     logicalgroup = forms.ChoiceField(
@@ -77,12 +78,7 @@ class ApiLevelForm(forms.Form):
 
 
 RegionFormset = formset_factory(RegionForm, extra=1, min_num=1)
-
 BrandFormset = formset_factory(BrandForm, extra=1, min_num=1)
-
 ServerNodeFormset = formset_factory(ServerNodeForm, extra=1, min_num=1)
-
 ConfigLevelFormset = formset_factory(ConfigLevelForm, extra=1, min_num=1)
-
 ApiLevelFormset = formset_factory(ApiLevelForm, extra=1, min_num=1)
-
