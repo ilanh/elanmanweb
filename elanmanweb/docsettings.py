@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b5!r6048r%y!p%&#^zcq92@@oaoi@7pfqk(j1c@cr8@fr%g4le'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -116,7 +117,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 SITE_ID = 3
-STATIC_ROOT = '/home/ilan/Documents/dev/env363/src/static/'
+STATIC_ROOT = '~/Developer/env363/src/static/'
 STATIC_URL = '/static/'
 
 CORS_REPLACE_HTTPS_REFERER      = False
