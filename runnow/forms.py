@@ -5,6 +5,7 @@ from extender.models import RoleObject, LogicalGroupObject, ConfigValueObject, A
 
 User = settings.AUTH_USER_MODEL
 
+
 class RegionForm(forms.Form):
     shortname = forms.CharField(max_length=16)
     desc = forms.CharField(max_length=64)
@@ -20,60 +21,62 @@ class BrandForm(forms.Form):
 
 class ServerNodeForm(forms.Form):
     fullname = forms.CharField(max_length=32)
-    role = forms.ChoiceField(choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(addon=False, ispublic=True)])
-    #role = forms.ChoiceField(choices=['a1','b2'])
-    brand = forms.ChoiceField(choices=['a1','b2'])
+    role = forms.ChoiceField(
+        choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(addon=False, ispublic=True)])
+    # role = forms.ChoiceField(choices=['a1','b2'])
+    brand = forms.ChoiceField(choices=['a1', 'b2'])
     region = forms.ChoiceField(choices=['a1', 'b2'])
     logicalgroup = forms.ChoiceField(
-        choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)])
+            choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)])
 
 
 class ConfigLevelForm(forms.Form):
     value = forms.ChoiceField(
-        choices=[(str(x.exid), str(x.desc)) for x in ConfigValueObject.objects.filter(ispublic=True)])
+            choices=[(str(x.exid), str(x.desc)) for x in ConfigValueObject.objects.filter(ispublic=True)])
     role = forms.MultipleChoiceField(
-        choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(ispublic=True)],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(ispublic=True)],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     brand = forms.MultipleChoiceField(
-        choices=['a1', 'b2'],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=['a1', 'b2'],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     region = forms.MultipleChoiceField(
-        choices=['a1', 'b2'],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=['a1', 'b2'],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     logicalgroup = forms.MultipleChoiceField(
-        choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
 
 
 class ApiLevelForm(forms.Form):
-    value = forms.ChoiceField(choices=[(str(x.exid), str(x.desc)) for x in ApiValueObject.objects.filter(ispublic=True)])
+    value = forms.ChoiceField(
+        choices=[(str(x.exid), str(x.desc)) for x in ApiValueObject.objects.filter(ispublic=True)])
     role = forms.MultipleChoiceField(
-        choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(ispublic=True)],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=[(str(x.exid), str(x.shortname)) for x in RoleObject.objects.filter(ispublic=True)],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     brand = forms.MultipleChoiceField(
-        choices=['a1', 'b2'],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=['a1', 'b2'],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     region = forms.MultipleChoiceField(
-        choices=['a1', 'b2'],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=['a1', 'b2'],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
     logicalgroup = forms.MultipleChoiceField(
-        choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)],
-        widget=forms.CheckboxSelectMultiple,
-        required=False
+            choices=[(str(x.exid), str(x.shortname)) for x in LogicalGroupObject.objects.filter(ispublic=True)],
+            widget=forms.CheckboxSelectMultiple,
+            required=False
     )
 
 

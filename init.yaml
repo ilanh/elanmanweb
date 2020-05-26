@@ -1,0 +1,153 @@
+- model: extender.roleobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: common
+    exid: comn
+    desc: common role, included in all roles first
+    addon: true
+    slug: comn
+    ispublic: true
+    popularity: 0
+- model: extender.roleobject
+  pk: 2
+  fields:
+    owner: 1
+    shortname: sharedhosting
+    exid: sha
+    desc: Shared hosting servers
+    addon: false
+    slug: sha
+    ispublic: true
+    popularity: 0
+- model: extender.logicalgroupobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: production
+    exid: prod
+    slug: prod
+    ispublic: true
+    popularity: 0
+- model: extender.logicalgroupobject
+  pk: 2
+  fields:
+    owner: 1
+    shortname: testing
+    exid: test
+    slug: test
+    ispublic: true
+    popularity: 0
+- model: extender.logicalgroupobject
+  pk: 3
+  fields:
+    owner: 1
+    shortname: development
+    exid: dev
+    slug: dev
+    ispublic: true
+    popularity: 0
+- model: extender.configsectionobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: firewallwhiteip
+    exid: fwip
+    desc: Firewall white list for IP
+    listobject: true
+    slug: fwip
+    ispublic: true
+    popularity: 0
+- model: extender.roletaskobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: checks
+    desc: general server checks
+    role: 1
+    slug: checks-comn
+    ispublic: true
+    popularity: 0
+    isdev: false
+    ispublished: true
+- model: extender.apiobject
+  pk: 2
+  fields:
+    owner: 1
+    shortname: whm
+    desc: cPanel Web Host Manager
+    slug: whm
+    ispublic: true
+    popularity: 0
+    isdev: false
+    ispublished: true
+- model: extender.apisectionobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: firewallports
+    exid: fwport
+    desc: Firewall ports actions
+    api: 2
+    slug: fwport
+    ispublic: false
+    popularity: 0
+    docurl: null
+- model: extender.roletemplateobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: csf.conf
+    slug: csfconf-comn
+    desc: csf.conf template
+    istemplate: true
+    role: 1
+    ispublic: true
+    popularity: 0
+    isdev: false
+    ispublished: true
+- model: extender.configsubobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: whiteip
+    exid: fwwhiteip
+    desc: Whitelist IP addresses
+    section: 1
+    slug: fwwhiteip
+    ispublic: true
+    popularity: 0
+- model: extender.apisubobject
+  pk: 1
+  fields:
+    owner: 1
+    shortname: tcpopeninports
+    exid: tcpportsin
+    desc: which tcp ports to open in
+    section: 1
+    slug: tcpportsin
+    ispublic: true
+    popularity: 0
+    trailngspace: false
+- model: extender.configvalueobject
+  pk: 1
+  fields:
+    owner: 1
+    exid: gldns
+    subobject: 1
+    value: 8.8.8.8
+    desc: Google DNS
+    slug: gldns
+    ispublic: true
+    popularity: 0
+- model: extender.apivalueobject
+  pk: 1
+  fields:
+    owner: 1
+    exid: tcpinwhmsh
+    subobject: 1
+    value: 20,21,22,25,53,80,110,143,161,162,443,465,587,993,995,2077,2078,2082,2083,2086,2087,2095,2096,1243,3306
+    desc: common whm tcp ports allowed in
+    slug: tcpinwhmsh
+    ispublic: true
+    popularity: 0
